@@ -1,0 +1,2146 @@
+[
+  {
+    "name": "DataHall",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "24 Hour PUE Delta",
+        "name": "24HourPueDelta",
+        "value": 2.9,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/Alarms/Output/Sum} + {[.]ActiveAreaAlarms}",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Active Alarm Count",
+        "historyEnabled": true,
+        "name": "ActiveAlarmCount",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]/PowerUsageEffectiveness/Alarms.ActiveAckCount}+{[.]/PowerUsageEffectiveness/Alarms.ActiveUnackCount}+{[.]/ItLoadMw/Alarms.ActiveAckCount}+{[.]/ItLoadMw/Alarms.ActiveUnackCount}",
+        "dataType": "Int8",
+        "documentation": "Active Area Alarms",
+        "name": "ActiveAreaAlarms",
+        "value": 0,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Aggregate",
+        "typeId": "Exchange/DataCenterDemo/AggregateArea/AggregateDataHall",
+        "tagType": "UdtInstance"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/CompositePerformanceIndex/Output/Mean}",
+        "dataType": "Float8",
+        "documentation": "Average Composite Performance Index",
+        "name": "AverageCompositePerformanceIndex",
+        "value": 0.0,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "if({[.]AverageCompositePerformanceIndex}\u003d-1,\u0027OFFLINE\u0027,if({[.]AverageCompositePerformanceIndex}\u003d-2,\u0027MAINTENANCE\u0027,if({[.]AverageCompositePerformanceIndex}\u003d-3,\u0027COMMISSIONING\u0027,if({[.]AverageCompositePerformanceIndex}\u003e0.90,\u0027OPTIMAL\u0027,if({[.]AverageCompositePerformanceIndex}\u003e0.70,\u0027SUB-OPTIMAL\u0027,\u0027CAUTION\u0027)))))",
+        "dataType": "String",
+        "documentation": "Average Composite Performance Status",
+        "name": "AverageCompositePerformanceStatus",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/CaMeanTemperature/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "CA Mean Temperature",
+        "historyEnabled": true,
+        "name": "CaMeanTemperature",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 0.65,
+        "documentation": "Cooling Capacity",
+        "engLow": 0.6,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "CoolingCapacity",
+        "pdsFunction": "cosine(0.6,0.65,100~,true)",
+        "value": 0.6,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "name": "Details",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Devices Online",
+            "name": "DevicesOnline",
+            "value": 1,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/EnergyEfficiencyRatio/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 8.2,
+        "documentation": "Energy Efficiency Ratio",
+        "historyEnabled": true,
+        "name": "EnergyEfficiencyRatio",
+        "value": 8.0,
+        "engLow": 7.7,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/HaMeanTemperature/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "HA Mean Temperature",
+        "historyEnabled": true,
+        "name": "HaMeanTemperature",
+        "value": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/HottestCaTemperature/Output/Max}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "Hottest CA Temperature",
+        "historyEnabled": true,
+        "name": "HottestCaTemperature",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/HottestHaTemperature/Output/Max}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "Hottest HA Temperature",
+        "historyEnabled": true,
+        "name": "HottestHaTemperature",
+        "value": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/ItLoadMw/Output/Sum}",
+        "engHigh": 4600.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]ItLoadMw.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]ItLoadMw.EngHigh}+ \u0027 \u0027 + {[.]ItLoadMw.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]ItLoadMw.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]ItLoadMw.EngLow}+ \u0027 \u0027 + {[.]ItLoadMw.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "IT Load (MW)",
+        "engLow": 3400.0,
+        "engUnit": "MW",
+        "tagType": "AtomicTag",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "ItLoadMw",
+        "value": 0
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Overriden Point Count",
+        "historyEnabled": true,
+        "name": "OverridenPointCount",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 2.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]PowerUsageEffectiveness.EngHigh}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]PowerUsageEffectiveness.EngLow}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Power Usage Effectiveness (PUE)",
+        "engLow": 1.03,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "PowerUsageEffectiveness",
+        "pdsFunction": "random(1.15, 1.3, false)",
+        "value": 1.15,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[~]Exchange/DataCenterDemo/Site1/Site/PueTarget}",
+        "dataType": "Float8",
+        "documentation": "PUE Target",
+        "name": "PueTarget",
+        "value": 1.2,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[~]Exchange/DataCenterDemo/Site1/Site/SlaCaHighTemp}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "SLA CA High Temp",
+        "historyEnabled": true,
+        "name": "SlaCaHighTemp",
+        "value": 24.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[~]Exchange/DataCenterDemo/Site1/Site/SlaCaLowTemp}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "SLA CA Low Temp",
+        "historyEnabled": true,
+        "name": "SlaCaLowTemp",
+        "value": 18.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 0.98,
+        "documentation": "UPS Capacity",
+        "engLow": 0.9,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "UpsCapacity",
+        "pdsFunction": "cosine(0.9,0.98,100~,true)",
+        "value": 0.95,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/CompositePerformanceIndex/Output/Min}",
+        "dataType": "Float8",
+        "documentation": "Worst Case Composite Perf Index",
+        "name": "WorstCaseCompositePerfIndex",
+        "value": 0.0,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "AggregateSection",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Alarms",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "AtomicName": {
+            "dataType": "String",
+            "value": "ActiveAlarmCount"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          }
+        },
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "IsUpsDischarging",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "IsBatteryDischarging"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/Equipment/UPS"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AggregateSite",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Alarms",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "AtomicName": {
+            "dataType": "String",
+            "value": "ActiveAlarmCount"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/DataHall"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CaMeanTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "CaMeanTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/DataHall"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CompositePerformanceIndex",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "CompositePerformanceIndex"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EnergyEfficiencyRatio",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "EnergyEfficiencyRatio"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HaMeanTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "HaMeanTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/DataHall"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HottestCaTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "HottestCaTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/DataHall"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HottestHaTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "HottestHaTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/DataHall"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ItLoadMw",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "ItLoadMw"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/DataHall"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AggregateDataHall",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Alarms",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "AtomicName": {
+            "dataType": "String",
+            "value": "ActiveAlarmCount"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CaMeanTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "CaMeanTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CompositePerformanceIndex",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "CompositePerformanceIndex"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EnergyEfficiencyRatio",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "EnergyEfficiencyRatio"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HaMeanTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "HaMeanTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HottestCaTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "HottestCaTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HottestHaTemperature",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "HottestHaTemperature"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Sum",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ItLoadMw",
+        "typeId": "Exchange/DataCenterDemo/AggregateTags",
+        "parameters": {
+          "UseExpressions": {
+            "dataType": "Integer",
+            "value": 1
+          },
+          "AtomicName": {
+            "dataType": "String",
+            "value": "ItLoadMw"
+          },
+          "TypeIdInstanceName": {
+            "dataType": "String",
+            "value": "*"
+          },
+          "EnableDatasetInput": {
+            "dataType": "Integer",
+            "value": 0
+          },
+          "TypeId": {
+            "dataType": "String",
+            "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/AggregateArea/Section"
+          },
+          "TimesNested": {
+            "dataType": "Integer",
+            "value": 2
+          },
+          "EnableAutomaticTrigger": {
+            "dataType": "Integer",
+            "value": 0
+          }
+        },
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "Output",
+            "tagType": "Folder",
+            "tags": [
+              {
+                "enabled": false,
+                "name": "Max",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Min",
+                "tagType": "AtomicTag"
+              },
+              {
+                "enabled": false,
+                "name": "Mean",
+                "tagType": "AtomicTag"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Section",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "24 Hour PUE Delta",
+        "name": "24HourPueDelta",
+        "value": 2.9,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/Alarms/Output/Sum} + {[.]ActiveAreaAlarms}",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Active Alarm Count",
+        "historyEnabled": true,
+        "name": "ActiveAlarmCount",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]/PowerUsageEffectiveness/Alarms.ActiveAckCount}+{[.]/PowerUsageEffectiveness/Alarms.ActiveUnackCount}+{[.]/ItLoadMw/Alarms.ActiveAckCount}+{[.]/ItLoadMw/Alarms.ActiveUnackCount}",
+        "dataType": "Int8",
+        "documentation": "Active Area Alarms",
+        "name": "ActiveAreaAlarms",
+        "value": 0,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Aggregate",
+        "typeId": "Exchange/DataCenterDemo/AggregateArea/AggregateSection",
+        "tagType": "UdtInstance"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]../Heatmap/Summary/Aggregate/ColdAisleTemperature/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "CA Mean Temperature",
+        "historyEnabled": true,
+        "name": "CaMeanTemperature",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "if({[.]HottestCaTemperature}\u003c{[.]SlaCaHighTemp},1,0)*.25+if({[.]PowerUsageEffectiveness}\u003c{[.]PueTarget},{[.]PueTarget}-{[.]PowerUsageEffectiveness},({[.]PueTarget}-({[.]PueTarget}-1)/{[.]PowerUsageEffectiveness})*.15)+if({[.]CoolingCapacity}\u003e0.6,1,0)*.25+if({[.]UpsDischarging},0,1)*.25+if({[.]EnergyEfficiencyRatio}\u003e0.78,1,0)*.1",
+        "dataType": "Float8",
+        "documentation": "Composite Performance Index",
+        "name": "CompositePerformanceIndex",
+        "value": 0.0,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "if({[.]CompositePerformanceIndex}\u003d-1,\u0027OFFLINE\u0027,if({[.]CompositePerformanceIndex}\u003d-2,\u0027MAINTENANCE\u0027,if({[.]CompositePerformanceIndex}\u003d-3,\u0027COMMISSIONING\u0027,if({[.]CompositePerformanceIndex}\u003e0.90,\u0027OPTIMAL\u0027,if({[.]CompositePerformanceIndex}\u003e0.70,\u0027SUB-OPTIMAL\u0027,\u0027CAUTION\u0027)))))",
+        "dataType": "String",
+        "documentation": "Composite Performance Status",
+        "name": "CompositePerformanceStatus",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 0.65,
+        "documentation": "Cooling Capacity",
+        "engLow": 0.6,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "CoolingCapacity",
+        "pdsFunction": "cosine(0.6,0.65,100~,true)",
+        "value": 0.6,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "name": "Details",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Devices Online",
+            "name": "DevicesOnline",
+            "value": 1,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 8.2,
+        "documentation": "Energy Efficiency Ratio",
+        "engLow": 7.7,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "EnergyEfficiencyRatio",
+        "pdsFunction": "cosine(7.7,8.2,100~,true)",
+        "value": 8.0,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]../Heatmap/Summary/Aggregate/HotAisleTemperature/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "HA Mean Temperature",
+        "historyEnabled": true,
+        "name": "HaMeanTemperature",
+        "value": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]../Heatmap/Summary/Aggregate/ColdAisleTemperature/Output/Max}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "Hottest CA Temperature",
+        "historyEnabled": true,
+        "name": "HottestCaTemperature",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]../Heatmap/Summary/Aggregate/HotAisleTemperature/Output/Max}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "Hottest HA Temperature",
+        "historyEnabled": true,
+        "name": "HottestHaTemperature",
+        "value": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 1150.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]ItLoadMw.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]ItLoadMw.EngHigh}+ \u0027 \u0027 + {[.]ItLoadMw.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]ItLoadMw.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]ItLoadMw.EngLow}+ \u0027 \u0027 + {[.]ItLoadMw.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "IT Load (MW)",
+        "engLow": 850.0,
+        "engUnit": "MW",
+        "tagType": "AtomicTag",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "ItLoadMw",
+        "pdsFunction": "sine(850.0, 1150.0, 10.0, true)",
+        "value": 0,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Overriden Point Count",
+        "historyEnabled": true,
+        "name": "OverridenPointCount",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 2.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]PowerUsageEffectiveness.EngHigh}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]PowerUsageEffectiveness.EngLow}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Power Usage Effectiveness (PUE)",
+        "engLow": 1.03,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "PowerUsageEffectiveness",
+        "pdsFunction": "random(1.15, 1.3, false)",
+        "value": 1.15,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[~]Exchange/DataCenterDemo/Site1/Site/PueTarget}",
+        "dataType": "Float8",
+        "documentation": "PUE Target",
+        "name": "PueTarget",
+        "value": 1.2,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[~]Exchange/DataCenterDemo/Site1/Site/SlaCaHighTemp}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "SLA CA High Temp",
+        "historyEnabled": true,
+        "name": "SlaCaHighTemp",
+        "value": 24.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[~]Exchange/DataCenterDemo/Site1/Site/SlaCaLowTemp}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "SLA CA Low Temp",
+        "historyEnabled": true,
+        "name": "SlaCaLowTemp",
+        "value": 18.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 0.98,
+        "documentation": "UPS Capacity",
+        "engLow": 0.9,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "UpsCapacity",
+        "pdsFunction": "cosine(0.9,0.98,100~,true)",
+        "value": 0.95,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/IsUpsDischarging/Output/Max}",
+        "dataType": "Int8",
+        "documentation": "UPS Discharging",
+        "name": "UpsDischarging",
+        "value": 0,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "Site",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "expr",
+        "expression": "{[.]/PowerUsageEffectiveness/Alarms.ActiveAckCount}+{[.]/PowerUsageEffectiveness/Alarms.ActiveUnackCount}+{[.]/CurrentPueDeltaFromDayPrior/Alarms.ActiveAckCount}+{[.]/CurrentPueDeltaFromDayPrior/Alarms.ActiveUnackCount}+{[.]/ItLoadMw/Alarms.ActiveAckCount}+{[.]/ItLoadMw/Alarms.ActiveUnackCount}+{[.]/OutdoorDryBulbTemperature/Alarms.ActiveAckCount}+{[.]/OutdoorDryBulbTemperature/Alarms.ActiveUnackCount}",
+        "dataType": "Int8",
+        "documentation": "Active Area Alarms",
+        "name": "ActiveAreaAlarms",
+        "value": 0,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Aggregate",
+        "typeId": "Exchange/DataCenterDemo/AggregateArea/AggregateSite",
+        "tagType": "UdtInstance"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/CompositePerformanceIndex/Output/Mean}",
+        "dataType": "Float8",
+        "documentation": "Average Composite Performance Index",
+        "name": "AverageCompositePerformanceIndex",
+        "value": 0.0,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "if({[.]AverageCompositePerformanceIndex}\u003d-1,\u0027OFFLINE\u0027,if({[.]AverageCompositePerformanceIndex}\u003d-2,\u0027MAINTENANCE\u0027,if({[.]AverageCompositePerformanceIndex}\u003d-3,\u0027COMMISSIONING\u0027,if({[.]AverageCompositePerformanceIndex}\u003e0.90,\u0027OPTIMAL\u0027,if({[.]AverageCompositePerformanceIndex}\u003e0.70,\u0027SUB-OPTIMAL\u0027,\u0027CAUTION\u0027)))))",
+        "dataType": "String",
+        "documentation": "Average Composite Performance Status",
+        "name": "AverageCompositePerformanceStatus",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/CaMeanTemperature/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "CA Mean Temperature",
+        "historyEnabled": true,
+        "name": "CaMeanTemperature",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 2.1,
+        "documentation": "Carbon Usage Effectiveness (CUE)",
+        "engLow": 1.5,
+        "engUnit": "kg/kWh",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "CarbonUsageEffectiveness",
+        "pdsFunction": "ramp(1.5, 2.1, 10.0, true)",
+        "value": 0.0,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 0.65,
+        "documentation": "Cooling Capacity",
+        "engLow": 0.55,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "CoolingCapacity",
+        "pdsFunction": "cosine(0.55,0.65,100~,true)",
+        "value": 0.6,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "engHigh": 5.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]CurrentPueDeltaFromDayPrior.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]CurrentPueDeltaFromDayPrior.EngHigh}+ \u0027 \u0027 + {[.]CurrentPueDeltaFromDayPrior.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "24 Hour PUE Delta",
+        "name": "CurrentPueDeltaFromDayPrior",
+        "value": 3.0,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Details",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[~]Exchange/DataCenterDemo/AlarmInfo/AlarmCount24Hr}",
+            "dataType": "Int8",
+            "documentation": "24HR Alarm Count",
+            "name": "24HrAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "documentation": "Location",
+            "name": "Location",
+            "value": "Ashburn, VA",
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Devices Online",
+            "name": "DevicesOnline",
+            "value": 1,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Aggregate/Alarms/Output/Sum} + {[.]../ActiveAreaAlarms}",
+            "dataType": "Int8",
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/EnergyEfficiencyRatio/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 8.2,
+        "documentation": "Energy Efficiency Ratio",
+        "historyEnabled": true,
+        "name": "EnergyEfficiencyRatio",
+        "value": 8.0,
+        "engLow": 7.7,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/HaMeanTemperature/Output/Mean}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "HA Mean Temperature",
+        "historyEnabled": true,
+        "name": "HaMeanTemperature",
+        "value": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/HottestCaTemperature/Output/Max}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "Hottest CA Temperature",
+        "historyEnabled": true,
+        "name": "HottestCaTemperature",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/HottestHaTemperature/Output/Max}",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 50.0,
+        "documentation": "Hottest HA Temperature",
+        "historyEnabled": true,
+        "name": "HottestHaTemperature",
+        "value": 0.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/ItLoadMw/Output/Sum}",
+        "engHigh": 9200.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]ItLoadMw.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]ItLoadMw.EngHigh}+ \u0027 \u0027 + {[.]ItLoadMw.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]ItLoadMw.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]ItLoadMw.EngLow}+ \u0027 \u0027 + {[.]ItLoadMw.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "IT Load (MW)",
+        "engLow": 6800.0,
+        "engUnit": "MW",
+        "tagType": "AtomicTag",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "ItLoadMw",
+        "value": 0
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 30.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]OutdoorDryBulbTemperature.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]OutdoorDryBulbTemperature.EngHigh}+ \u0027 \u0027 + {[.]OutdoorDryBulbTemperature.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]OutdoorDryBulbTemperature.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]OutdoorDryBulbTemperature.EngLow}+ \u0027 \u0027 + {[.]OutdoorDryBulbTemperature.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Outdoor Temp",
+        "historyEnabled": true,
+        "name": "OutdoorDryBulbTemperature",
+        "value": 24.0,
+        "engLow": 10.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "Outdoor Relative Humidity",
+        "historyEnabled": true,
+        "name": "OutdoorRelativeHumidity",
+        "value": 0.5,
+        "engUnit": "%",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 2.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]PowerUsageEffectiveness.EngHigh}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]PowerUsageEffectiveness.EngLow}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Power Usage Effectiveness (PUE)",
+        "engLow": 1.03,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "PowerUsageEffectiveness",
+        "pdsFunction": "random(1.15, 1.3, false)",
+        "value": 1.15,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "PUE Target",
+        "name": "PueTarget",
+        "value": 1.2,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "SLA CA High Temp",
+        "historyEnabled": true,
+        "name": "SlaCaHighTemp",
+        "value": 24.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "SLA CA Low Temp",
+        "historyEnabled": true,
+        "name": "SlaCaLowTemp",
+        "value": 18.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Overriden Point Count",
+        "historyEnabled": true,
+        "name": "SumOfOverriddenPoints",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 0.98,
+        "documentation": "UPS Capacity",
+        "engLow": 0.8,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "UpsCapacity",
+        "pdsFunction": "cosine(0.8,0.98,100~,true)",
+        "value": 0.9,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 10.0,
+        "documentation": "Water Usage Effectiveness (WUE)",
+        "engLow": 0.2,
+        "engUnit": "L / kWh",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "WaterUsageEffectiveness",
+        "pdsFunction": "ramp(1.8, 9.0, 10.0, true)",
+        "value": 1.8,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]Aggregate/CompositePerformanceIndex/Output/Min}",
+        "dataType": "Float8",
+        "documentation": "Worst Case Composite Perf Index",
+        "name": "WorstCaseCompositePerfIndex",
+        "value": 0.0,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      }
+    ]
+  }
+]

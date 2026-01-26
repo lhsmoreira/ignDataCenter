@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Breaker6A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker4B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker3B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker3A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker2B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker2A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker4A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker6B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker5B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Breaker5A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Breaker",
+    "tagType": "UdtInstance"
+  }
+]

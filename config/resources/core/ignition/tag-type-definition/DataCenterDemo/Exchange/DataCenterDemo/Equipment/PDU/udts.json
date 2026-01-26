@@ -1,0 +1,394 @@
+[
+  {
+    "name": "OCP",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "Current rating",
+        "name": "CurrentRating",
+        "value": 500.0,
+        "engUnit": "A",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Boolean",
+        "engHigh": 0.5,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]IsOcpTripped.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]IsOcpTripped.EngHigh}+ \u0027 \u0027 + {[.]IsOcpTripped.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Is OCP Tripped",
+        "name": "IsOcpTripped",
+        "value": false,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]../../Inlet/Inlet1/RmsCurrent}",
+        "dataType": "Float8",
+        "documentation": "RMS current",
+        "name": "RmsCurrent",
+        "value": 0.0,
+        "engUnit": "A",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "Inlet",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "Active Energy Counter",
+        "name": "ActiveEnergyCounter",
+        "value": 24.0,
+        "engUnit": "MWh",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]RmsCurrent}*0.48",
+        "dataType": "Float8",
+        "documentation": "Active Power",
+        "name": "ActivePower",
+        "value": 0.0,
+        "engUnit": "kW",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Boolean",
+        "alarms": [
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]IsSurgeProtectorHealthy.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]IsSurgeProtectorHealthy.EngLow}+ \u0027 \u0027 + {[.]IsSurgeProtectorHealthy.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Is Surge Protector Healthy",
+        "name": "IsSurgeProtectorHealthy",
+        "value": true,
+        "engLow": 0.5,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "Peak current",
+        "name": "PeakCurrent",
+        "value": 435.0,
+        "engUnit": "A",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "sum({[.]../../Outlet/Outlet1/RmsCurrent},{[.]../../Outlet/Outlet2/RmsCurrent},{[.]../../Outlet/Outlet3/RmsCurrent},{[.]../../Outlet/Outlet4/RmsCurrent},{[.]../../Outlet/Outlet5/RmsCurrent},{[.]../../Outlet/Outlet6/RmsCurrent},{[.]../../Outlet/Outlet7/RmsCurrent},{[.]../../Outlet/Outlet8/RmsCurrent},{[.]../../Outlet/Outlet9/RmsCurrent},{[.]../../Outlet/Outlet10/RmsCurrent},{[.]../../Outlet/Outlet11/RmsCurrent},{[.]../../Outlet/Outlet12/RmsCurrent},{[.]../../Outlet/Outlet13/RmsCurrent},{[.]../../Outlet/Outlet14/RmsCurrent},{[.]../../Outlet/Outlet15/RmsCurrent},{[.]../../Outlet/Outlet16/RmsCurrent})",
+        "dataType": "Float8",
+        "engHigh": 450.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]RmsCurrent.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]RmsCurrent.EngHigh}+ \u0027 \u0027 + {[.]RmsCurrent.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]RmsCurrent.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]RmsCurrent.EngLow}+ \u0027 \u0027 + {[.]RmsCurrent.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "RMS current",
+        "name": "RmsCurrent",
+        "value": 0.0,
+        "engLow": 100.0,
+        "engUnit": "A",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "PDU",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Config",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Number of Inlets",
+            "name": "NumberOfInlets",
+            "value": 1,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Number of overcurrent protectors",
+            "name": "NumberOfOvercurrentProtectors",
+            "value": 1,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Number of outlets",
+            "name": "NumberOfOutlets",
+            "value": 16,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Inlet",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "name": "Inlet1",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Inlet",
+            "tagType": "UdtInstance"
+          }
+        ]
+      },
+      {
+        "name": "Ocp",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "name": "Ocp1",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/OCP",
+            "tagType": "UdtInstance"
+          }
+        ]
+      },
+      {
+        "name": "Outlet",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "name": "Outlet11",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet4",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet10",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet12",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet6",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet2",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet8",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet15",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet3",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet16",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet5",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet1",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet7",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet9",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet14",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          },
+          {
+            "name": "Outlet13",
+            "typeId": "Exchange/DataCenterDemo/Equipment/PDU/Outlet",
+            "tagType": "UdtInstance"
+          }
+        ]
+      },
+      {
+        "name": "Peripheral",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Peripheral Sensor 1",
+            "name": "PeripheralSensor1",
+            "value": 29.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Inlet/Inlet1/RmsCurrent/Alarms.ActiveAckCount}+{[.]../Inlet/Inlet1/RmsCurrent/Alarms.ActiveUnackCount}+{[.]../Inlet/Inlet1/IsSurgeProtectorHealthy/Alarms.ActiveAckCount}+{[.]../Inlet/Inlet1/IsSurgeProtectorHealthy/Alarms.ActiveUnackCount}+{[.]../OCP/Ocp1/IsOcpTripped/Alarms.ActiveAckCount}+{[.]../OCP/Ocp1/IsOcpTripped/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Outlet",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "Float8",
+        "documentation": "Active Energy Counter",
+        "name": "ActiveEnergyCounter",
+        "value": 1500.0,
+        "engUnit": "kWh",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "{[.]RmsCurrent}*0.48",
+        "dataType": "Float8",
+        "documentation": "Active Power",
+        "name": "ActivePower",
+        "value": 0.0,
+        "engUnit": "kW",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "Boolean",
+        "documentation": "Is Control Coil Energized",
+        "name": "IsControlCoilEnergized",
+        "value": false,
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "engHigh": 40.0,
+        "documentation": "RMS current",
+        "name": "RmsCurrent",
+        "pdsFunction": "random(10,30,true)",
+        "value": 0.0,
+        "engLow": 0.0,
+        "engUnit": "A",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      }
+    ]
+  }
+]

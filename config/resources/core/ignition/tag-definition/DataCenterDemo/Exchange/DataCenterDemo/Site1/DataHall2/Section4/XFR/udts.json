@@ -1,0 +1,12 @@
+[
+  {
+    "name": "XFR1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/XFR",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "XFR1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/XFR",
+    "tagType": "UdtInstance"
+  }
+]

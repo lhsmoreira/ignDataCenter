@@ -1,0 +1,22 @@
+[
+  {
+    "name": "UPS2A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/UPS",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "UPS1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/UPS",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "UPS2B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/UPS",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "UPS1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/UPS",
+    "tagType": "UdtInstance"
+  }
+]

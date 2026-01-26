@@ -1,0 +1,87 @@
+[
+  {
+    "dataType": "String",
+    "name": "AgentGroup",
+    "defaultValue": "Default Group",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "NodeRole",
+    "defaultValue": "",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "Version",
+    "defaultValue": "8.1.33",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "Boolean",
+    "name": "IsConnected",
+    "defaultValue": false,
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "AgentName",
+    "defaultValue": "Backend - Backup",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "RunningState",
+    "defaultValue": "Running",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "BrowserURL",
+    "defaultValue": "http://172.31.64.203:8088",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "ServerId",
+    "defaultValue": "_0:0:Backend-Backup",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "Boolean",
+    "name": "IsApproved",
+    "defaultValue": true,
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "PlatformEdition",
+    "defaultValue": "",
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "expr",
+    "expression": "now(5000)",
+    "dataType": "DateTime",
+    "name": "LastCommunication",
+    "formatString": "yyyy-MM-dd h:mm:ss aa",
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "Boolean",
+    "name": "IsRunning",
+    "defaultValue": true,
+    "tagType": "AtomicTag"
+  },
+  {
+    "dataType": "String",
+    "name": "LicenseKey",
+    "defaultValue": "###-###",
+    "tagType": "AtomicTag"
+  },
+  {
+    "name": "RunningStateInt",
+    "defaultValue": 1,
+    "tagType": "AtomicTag"
+  }
+]

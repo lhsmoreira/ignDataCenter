@@ -1,0 +1,14 @@
+[
+  {
+    "valueSource": "memory",
+    "name": "Connected",
+    "defaultValue": 1500,
+    "tagType": "AtomicTag"
+  },
+  {
+    "valueSource": "memory",
+    "name": "Total",
+    "defaultValue": 1500,
+    "tagType": "AtomicTag"
+  }
+]

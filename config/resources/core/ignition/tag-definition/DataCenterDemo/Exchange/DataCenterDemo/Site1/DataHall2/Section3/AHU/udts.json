@@ -1,0 +1,37 @@
+[
+  {
+    "name": "AHU5",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AHU4",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AHU2",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AHU1",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AHU7",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AHU3",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AHU6",
+    "typeId": "Exchange/DataCenterDemo/Equipment/AHU",
+    "tagType": "UdtInstance"
+  }
+]

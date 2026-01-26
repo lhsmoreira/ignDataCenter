@@ -1,0 +1,675 @@
+[
+  {
+    "name": "AisleHot",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "expr",
+        "expression": "split({[.].typeId},\u0027/\u0027)[len(split({[.].typeId},\u0027/\u0027))-1,0]",
+        "dataType": "String",
+        "documentation": "AisleType",
+        "name": "AisleType",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "if({[.]AisleType} \u003d \u0027AisleHot\u0027, \u0027HA\u0027, \u0027CA\u0027) + toInt(replace({RootInstanceName},\u0027Aisle\u0027,\u0027\u0027)/2)",
+        "dataType": "String",
+        "documentation": "Name",
+        "name": "Name",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Sensor1",
+        "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/SensorHot",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Sensor2",
+        "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/SensorHot",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Sensor3",
+        "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/SensorHot",
+        "tagType": "UdtInstance"
+      }
+    ]
+  },
+  {
+    "name": "Summary",
+    "parameters": {
+      "ColdAisle": {
+        "dataType": "Integer",
+        "value": 1
+      },
+      "MinutesBack": {
+        "dataType": "Integer",
+        "value": 10
+      },
+      "DistinctNumbering": {
+        "dataType": "Integer",
+        "value": 0
+      },
+      "GroupByMS": {
+        "dataType": "Integer",
+        "value": 60000
+      }
+    },
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Aggregate",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "name": "ColdAisleTemperature",
+            "typeId": "Exchange/DataCenterDemo/AggregateTags",
+            "parameters": {
+              "EnableDatasetInput": {
+                "dataType": "Integer",
+                "value": 1
+              }
+            },
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "historyProvider": "DataCenter",
+                    "historyEnabled": true,
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "historyProvider": "DataCenter",
+                    "historyEnabled": true,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "HotAisleTemperature",
+            "typeId": "Exchange/DataCenterDemo/AggregateTags",
+            "parameters": {
+              "EnableDatasetInput": {
+                "dataType": "Integer",
+                "value": 1
+              }
+            },
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "historyProvider": "DataCenter",
+                    "historyEnabled": true,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "historyProvider": "DataCenter",
+                    "historyEnabled": true,
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Alarms",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "Status",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "0",
+            "name": "ActiveAlarmCount",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "AlarmsExecuteTime",
+            "value": 0,
+            "engUnit": "ms",
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tif currentValue.value:\n\t\timport traceback\n\t\tstartTime \u003d system.date.now()\n\t\ttry:\n\t\t\t# read in required values\n\t\t\treadPaths \u003d [\n\t\t\t\t \"[.]../Parameters.MinutesBack\"\n\t\t\t\t,\"[.]../Parameters.GroupByMS\"\n\t\t\t\t,\"[.]../Tags/Tags\"\n\t\t\t]\n\t\t\t\n\t\t\ttags \u003d system.tag.readBlocking(readPaths)\n\t\t\t\n\t\t\tminutesBack \u003d tags[0].value\n\t\t\tgroupByMS \u003d tags[1].value\n\t\t\ttagsDataset \u003d tags[2].value\n\t\t\t\n\t\t\t# setup time range\n\t\t\talarmStartDate \u003d system.date.addMinutes(startTime, -minutesBack)\n\t\t\t\n\t\t\t# pull alarm history\n\t\t\tmyPaths \u003d list(tagsDataset.getColumnAsList(tagsDataset.getColumnIndex(\u0027alarmSourceWildcard\u0027)))\n\t\t\tresults \u003d system.alarm.queryJournal(\n\t\t\t\tjournalName\u003d\"DataCenterDemoJournal\", \n\t\t\t\tpath \u003d myPaths,\n\t\t\t\tstartDate\u003dalarmStartDate, \n\t\t\t\tendDate\u003dstartTime, \n\t\t\t\tstate\u003d[\u0027ActiveUnacked\u0027], \n\t\t\t\tall_properties\u003d[(\"IsSystemEvent\",\"\u003d\",\u0027False\u0027)]\n\t\t\t\t)\n\t\t\t\t\n\t\t\t# make lookup dictionary\n\t\t\talarmSourceDict \u003d {\n\t\t\t\ttagsDataset.getValueAt(i, \u0027alarmSourceStart\u0027) : i\n\t\t\t\tfor i in xrange(tagsDataset.getRowCount())\n\t\t\t}\n\t\t\t\n\t\t\t# create dictionary to group results by second\n\t\t\talarmDict \u003d {}\n\t\t\tfor r in results:\n\t\t\t\talarmStart \u003d str(r.getSource()).split(\u0027:/alm:\u0027)[0]\n\t\t\t\tmyIndex \u003d alarmSourceDict[alarmStart]\n\t\t\t\taisle \u003d tagsDataset.getValueAt(myIndex,\u0027aisle\u0027)\n\t\t\t\tsensor \u003d tagsDataset.getValueAt(myIndex,\u0027sensor\u0027)\n\t\t\t\tname \u003d tagsDataset.getValueAt(myIndex,\u0027name\u0027)\n\t\t\t\t\n\t\t\t\talarm \u003d r.getName()\n\t\t\t\troundedTime \u003d r[\u0027EventTime\u0027].getTime() / groupByMS * groupByMS\n\t\t\t\tsensorInfo \u003d {\u0027eventValue\u0027 : r[\u0027eventValue\u0027], \u0027index\u0027 : myIndex}\n\t\t\t\t\n\t\t\t\tif roundedTime not in alarmDict.keys():\n\t\t\t\t\talarmDict[roundedTime] \u003d {}\n\t\t\t\tif name not in alarmDict[roundedTime].keys():\n\t\t\t\t\talarmDict[roundedTime][name] \u003d {}\n\t\t\t\tif alarm not in alarmDict[roundedTime][name].keys():\n\t\t\t\t\talarmDict[roundedTime][name][alarm] \u003d {}\n\t\t\t\tif aisle not in alarmDict[roundedTime][name][alarm].keys():\n\t\t\t\t\talarmDict[roundedTime][name][alarm][aisle] \u003d {}\n\t\t\t\tif sensor not in alarmDict[roundedTime][name][alarm][aisle].keys():\n\t\t\t\t\talarmDict[roundedTime][name][alarm][aisle][sensor] \u003d [sensorInfo]\n\t\t\t\telse:\n\t\t\t\t\talarmDict[roundedTime][name][alarm][aisle][sensor].append(sensorInfo)\n\t\t\t\n\t\t\t# generate dataset to write\n\t\t\theaders \u003d [\u0027Time\u0027, \u0027TagName\u0027 ,\u0027AlarmName\u0027, \u0027Aisles\u0027, \u0027Sensors\u0027, \u0027SensorList\u0027, \u0027SensorMap\u0027]\n\t\t\tdata \u003d []\n\t\t\tmaxSensorsPerAisle \u003d max([int(i) for i in tagsDataset.getColumnAsList(tagsDataset.getColumnIndex(\u0027sensor\u0027))])\n\t\t\tmaxAislesPerZone \u003d max([int(i) for i in tagsDataset.getColumnAsList(tagsDataset.getColumnIndex(\u0027aisle\u0027))])\n\t\t\tfor time in sorted(alarmDict.keys(), reverse\u003dTrue):\n\t\t\t\tfor tagName in alarmDict[time].keys():\n\t\t\t\t\tfor al in alarmDict[time][tagName].keys():\n\t\t\t\t\t\tnewRow \u003d []\n\t\t\t\t\t\tsensorMap \u003d [[None]*maxSensorsPerAisle for _ in xrange(maxAislesPerZone+1)]\n\t\t\t\t\t\taisles \u003d 0\n\t\t\t\t\t\tsensors \u003d 0\n\t\t\t\t\t\tsensorList \u003d []\n\t\t\t\t\t\tfor a in alarmDict[time][tagName][al].keys():\n\t\t\t\t\t\t\taisles +\u003d 1\n\t\t\t\t\t\t\tfor s in alarmDict[time][tagName][al][a].keys():\n\t\t\t\t\t\t\t\tsensors +\u003d 1\n\t\t\t\t\t\t\t\tindex \u003d alarmDict[time][tagName][al][a][s][0][\u0027index\u0027]\n\t\t\t\t\t\t\t\taisleName \u003d tagsDataset.getValueAt(index, \u0027aisleName\u0027)\n\t\t\t\t\t\t\t\taisle \u003d int(tagsDataset.getValueAt(index, \u0027aisle\u0027))\n\t\t\t\t\t\t\t\tsensor \u003d int(tagsDataset.getValueAt(index, \u0027sensor\u0027))\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tsensorList.append(\u0027%sS%s\u0027%(aisleName,sensor))\n\n\t\t\t\t\t\t\t\teventValues \u003d [obj[\u0027eventValue\u0027] for obj in alarmDict[time][tagName][al][a][s]]\n\t\t\t\t\t\t\t\tif \u0027above\u0027 in al.lower():\n\t\t\t\t\t\t\t\t\tvalue \u003d max(eventValues)\n\t\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\t\tvalue \u003d min(eventValues)\n\t\t\t\t\t\t\t\tsensorMap[aisle-1][sensor-1] \u003d value\n\t\t\t\t\t\tsensorStr \u003d \u0027,\u0027.join(sensorList)\n\t\t\t\t\t\tnewRow \u003d [system.date.fromMillis(time), tagName, al, aisles, sensors, sensorStr, str(sensorMap)]\n\t\t\t\t\t\tdata.append(newRow)\n\t\t\tds \u003d system.dataset.toDataSet(headers, data)\n\t\t\t\n\t\t\t# write to tags\n\t\t\twritePaths \u003d [\n\t\t\t\t  \"[.]Alarms\"\n\t\t\t\t, \"[.]AlarmsExecuteTime\"\n\t\t\t\t, \"[.]Status\"\n\t\t\t\t, tagPath\n\t\t\t]\n\t\t\tvalues \u003d [\n\t\t\t\t  ds\n\t\t\t\t, system.date.millisBetween(startTime, system.date.now())\n\t\t\t\t, \u0027Executed on %s\u0027 % (system.date.now())\n\t\t\t\t, False\n\t\t\t]\n\n\t\texcept:\n\t\t\twritePaths \u003d [\n\t\t\t\t  \"[.]AlarmsExecuteTime\"\n\t\t\t  \t, \"[.]Status\"\n\t\t\t\t, tagPath]\n\t\t\tvalues \u003d [\n\t\t\t\t  system.date.millisBetween(startTime, system.date.now())\n\t\t\t\t, \"Error at %s on: %s\" % (system.date.now(),traceback.format_exc())\n\t\t\t\t, False\n\t\t\t]\n\t\tfinally:\n\t\t\tsystem.tag.writeAsync(writePaths, values)"
+              }
+            ],
+            "valueSource": "memory",
+            "expression": "now(3000)",
+            "dataType": "Boolean",
+            "name": "AlarmsExecute",
+            "formatString": "#,##0.##",
+            "value": true,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "Alarms",
+            "value": "{\"columns\":[],\"rows\":[]}",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "History",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "HistoryExecuteTime",
+            "value": 0,
+            "engUnit": "ms",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "History",
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tif currentValue.value:\n\t\timport traceback\n\t\tscriptStart \u003d system.date.now()\n\t\ttry:\n\t\t\t# read in required values\n\t\t\treadPaths \u003d [\n\t\t\t\t \"[.]../Parameters.MinutesBack\"\n\t\t\t\t,\"[.]../Tags/Tags\"\n\t\t\t]\n\t\t\ttags \u003d system.tag.readBlocking(readPaths)\n\t\t\tminutesBack \u003d tags[0].value\n\t\t\ttagDataset \u003d tags[1].value\n\t\t\ttagPaths \u003d list(tagDataset.getColumnAsList(0))\n\t\t\t\n\t\t\t# setup time range\n\t\t\tend \u003d system.date.fromMillis(system.date.toMillis(system.date.now())/1000*1000)\n\t\t\tstart \u003d system.date.addMinutes(end, -minutesBack)\n\t\t\t\n\t\t\t# get history\n\t\t\tdataset \u003d system.tag.queryTagHistory(\n\t\t\t\tpaths\u003dtagPaths, \n\t\t\t\tstartDate\u003dstart, endDate\u003dend,\n\t\t\t\tintervalSeconds \u003d 1,\n\t\t\t\taggregationMode\u003d\"LastValue\", \n\t\t\t\treturnFormat\u003d\u0027Wide\u0027)\n\n\t\t\t# write to tags\n\t\t\twritePaths \u003d [\n\t\t\t\t  \"[.]History\"\n\t\t\t\t, \"[.]HistoryExecuteTime\"\n\t\t\t\t, \"[.]Status\"\n\t\t\t\t, tagPath\n\t\t\t]\n\t\t\tvalues \u003d [\n\t\t\t\t  dataset\n\t\t\t\t, system.date.millisBetween(scriptStart, system.date.now())\n\t\t\t\t, \u0027Executed on %s\u0027 % (system.date.now())\n\t\t\t\t, False\n\t\t\t]\n\t\texcept:\n\t\t\twritePaths \u003d [\n\t\t\t\t  \"[.]HistoryExecuteTime\"\n\t\t\t  \t, \"[.]Status\"\n\t\t\t\t, tagPath]\n\t\t\tvalues \u003d [\n\t\t\t\t  system.date.millisBetween(scriptStart, system.date.now())\n\t\t\t\t, \"Error at %s on: %s\" % (system.date.now(),traceback.format_exc())\n\t\t\t\t, False\n\t\t\t]\n\t\tfinally:\n\t\t\tsystem.tag.writeAsync(writePaths, values)"
+              }
+            ],
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "name": "HistoryExecute",
+            "value": true,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "Status",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Tags",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tsystem.tag.writeAsync([\"[.]TagsGenerate\"], [True])"
+              }
+            ],
+            "valueSource": "expr",
+            "expression": "\u0027ColdAisle: \u0027 + {ColdAisle} + \u0027 DistinctNumbering: \u0027 + {DistinctNumbering}",
+            "dataType": "String",
+            "name": "ParameterWatch",
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tstartTime \u003d system.date.now()\n\timport re\n\n\t# read needed tags\n\ttags \u003d system.tag.readBlocking([\n\t\t  \"[.]../Parameters.PathToParentFolder\"\n\t])\n\tpathToParentFolder \u003d tags[0].value\t\n\t\t\n\t# browse for aisle UDTs\n\taisleUdts \u003d system.tag.browse(pathToParentFolder, \n\t\t{\u0027name\u0027: \u0027Aisle*\u0027, \u0027tagType\u0027:\u0027UdtInstance\u0027, \u0027recursive\u0027: True}).getResults()\t\n\t\n\t# read Name and AisleType tags of the UDT\n\tnamePaths \u003d [\u0027%s/Name\u0027 % aisle[\u0027fullPath\u0027] for aisle in aisleUdts]\n\ttypePaths \u003d [\u0027%s/AisleType\u0027 % aisle[\u0027fullPath\u0027] for aisle in aisleUdts]\n\tnameTypeTags \u003d system.tag.readBlocking(namePaths + typePaths)\n\tnameType \u003d [(nameTypeTags[i].value, nameTypeTags[i+len(namePaths)].value) for i in xrange(len(namePaths))]\n\t\n\t# browse every UDT for atomic tags to compile a dataset of tags\n\tpattern \u003d re.compile(r\u0027/Aisle(\\d+)/Sensor(\\d+)/\u0027)\n\tdata \u003d []\n\tcoldData \u003d []\n\thotData \u003d []\n\tfor aisleUdt, (aisleName, aisleType) in zip(aisleUdts, nameType):\n\t\tudts \u003d system.tag.browse(str(aisleUdt[\u0027fullPath\u0027]), \n\t\t\t{\u0027tagType\u0027:\u0027AtomicTag\u0027,\u0027recursive\u0027:True}\n\t\t).getResults()\n\t\t\n\t\tfor udt in udts:\n\t\t\tfullPath \u003d str(udt[\u0027fullPath\u0027])\n\t\t\tmatch \u003d pattern.search(fullPath)\n\t\t\tname \u003d fullPath.split(\u0027/\u0027)[-1]\n\t\t\tisCold \u003d aisleType \u003d\u003d \u0027AisleCold\u0027\n\t\t\t\t\n\t\t\tif match:\n\t\t\t\taisle \u003d int(match.group(1))\n\t\t\t\tsensor \u003d match.group(2)\n\t\t\t\talarmSourceStart \u003d fullPath.replace(\u0027[\u0027,\u0027prov:\u0027).replace(\u0027]\u0027,\u0027:/tag:\u0027)\n\t\t\t\talarmSourceWildcard \u003d \u0027%s*\u0027 % alarmSourceStart\n\t\t\t\trow \u003d [fullPath, name, aisle, sensor, isCold, aisleName, alarmSourceStart, alarmSourceWildcard]\n\t\t\t\tdata.append(row)\n\t\t\t\tif name \u003d\u003d \u0027Temperature\u0027:\n\t\t\t\t\tif isCold:\n\t\t\t\t\t\tcoldData.append(row)\n\t\t\t\t\telse:\n\t\t\t\t\t\thotData.append(row)\n\t\t\t\t\n\t# convert to datasets\n\theaders \u003d [\u0027fullPath\u0027, \u0027name\u0027, \u0027aisle\u0027, \u0027sensor\u0027, \u0027isCold\u0027, \u0027aisleName\u0027, \u0027alarmSourceStart\u0027, \u0027alarmSourceWildcard\u0027]\n\tdataset \u003d system.dataset.toDataSet(headers, data)\n\tcoldDataset \u003d system.dataset.toDataSet(headers, coldData)\n\thotDataset \u003d system.dataset.toDataSet(headers, hotData)\n\t\n\t# get configs of every atomic in UDT\n\tbasePath \u003d \u0027_types_/Exchange/DataCenterDemo/Equipment/Heatmap/SensorCold\u0027\n\tgetConfigs \u003d system.tag.getConfiguration(basePath, True)\n\tconfigs \u003d {}\t\n\tfor config in getConfigs[0][\u0027tags\u0027]:\n\t\tconfigs[config[\u0027name\u0027]] \u003d {\n\t\t\t \u0027name\u0027: config[\u0027name\u0027]\n\t\t\t,\u0027engLow\u0027: config.get(\u0027engLow\u0027)\n\t\t\t,\u0027engHigh\u0027: config.get(\u0027engHigh\u0027)\n\t\t\t,\u0027engUnit\u0027: config.get(\u0027engUnit\u0027)\n\t\t}\n\n\t# create expression for ActiveAlarmCount tag\n\tactiveAlarmCountPath \u003d \"[.]../Alarms/ActiveAlarmCount\"\n\tactiveAlarmFolderPath \u003d activeAlarmCountPath[:activeAlarmCountPath.rfind(\u0027/\u0027)]\n\tactiveAlarmCount \u003d system.tag.getConfiguration(activeAlarmCountPath, False)\n\tactiveAlarmCount[0][\u0027expression\u0027] \u003d \u0027 + \u0027.join([\u0027{%s/Alarms.ActiveUnackCount}\u0027 % row[0] for row in data])\n\tsystem.tag.configure(activeAlarmFolderPath, activeAlarmCount[0], collisionPolicy \u003d \u0027o\u0027)\n\n\t# write to tags\n\tsystem.tag.writeAsync(\n\t\t[\n\t\t\t\"[.]Tags\"\n\t\t\t,\"[.]../Aggregate/ColdAisleTemperature/Config/DatasetInput\"\n\t\t\t,\"[.]../Aggregate/HotAisleTemperature/Config/DatasetInput\"\n\t\t\t,\"[.]Configs\"\n\t\t\t,\"[.]TagsGenerateTime\"\n\t\t\t,tagPath\n\t\t], \n\t\t[\n\t\t\tdataset\n\t\t\t,coldDataset\n\t\t\t,hotDataset\n\t\t\t,configs\n\t\t\t,system.date.millisBetween(startTime, system.date.now())\n\t\t\t,False\n\t\t]\n\t)"
+              }
+            ],
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "name": "TagsGenerate",
+            "value": true,
+            "engLow": 0.0,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "TagsGenerateTime",
+            "value": 0,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "Tags",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Document",
+            "name": "Configs",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SensorHot",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 60.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Humidity.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]Humidity.EngHigh}+ \u0027 \u0027 + {[.]Humidity.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Humidity.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]Humidity.EngLow}+ \u0027 \u0027 + {[.]Humidity.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Humidity",
+        "engLow": 40.0,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "Humidity",
+        "pdsFunction": "cosine(42,44,100~,true)",
+        "value": 0.0,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 44.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Temperature.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]Temperature.EngHigh}+ \u0027 \u0027 + {[.]Temperature.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Temperature",
+        "engUnit": "°C",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "Temperature",
+        "pdsFunction": "random(38,43.9,true)",
+        "value": 0.0,
+        "opcServer": "Ignition OPC UA Server"
+      }
+    ]
+  },
+  {
+    "name": "SensorCold",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 60.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Humidity.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]Humidity.EngHigh}+ \u0027 \u0027 + {[.]Humidity.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Humidity.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]Humidity.EngLow}+ \u0027 \u0027 + {[.]Humidity.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Humidity",
+        "engLow": 40.0,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "Humidity",
+        "pdsFunction": "cosine(46,48,100~,true)",
+        "value": 0.0,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 24.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Temperature.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]Temperature.EngHigh}+ \u0027 \u0027 + {[.]Temperature.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "inclusiveA": false,
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]Temperature.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]Temperature.EngLow}+ \u0027 \u0027 + {[.]Temperature.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Temperature",
+        "engLow": 18.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "Temperature",
+        "pdsFunction": "random(18,23.9,true)",
+        "value": 0.0,
+        "opcServer": "Ignition OPC UA Server"
+      }
+    ]
+  },
+  {
+    "name": "HeatmapOrchestrator",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "expr",
+        "expression": "now(1000)",
+        "dataType": "DateTime",
+        "name": "Clock",
+        "formatString": "yyyy-MM-dd h:mm:ss aa",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "now(60000)",
+        "dataType": "DateTime",
+        "name": "ClockMinute",
+        "formatString": "yyyy-MM-dd h:mm:ss aa",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "now(5000)",
+        "dataType": "DateTime",
+        "name": "ClockSlow",
+        "formatString": "yyyy-MM-dd h:mm:ss aa",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Execute",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "name": "Index",
+            "value": 0,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "name": "IndexMax",
+            "value": 0,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "Tag",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "name": "Enabled",
+            "value": true,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DateTime",
+            "name": "Timestamp",
+            "formatString": "yyyy-MM-dd h:mm:ss aa",
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tif currentValue.value:\n\t\ttags \u003d system.tag.readBlocking([\"[.]Index\", \"[.]../TagList/ExecuteTags\"])\n\t\t\n\t\t# only trigger one tag from the list per cycle\n\t\texecuteTags \u003d tags[1].value\n\t\texecuteIndex \u003d (tags[0].value+1) % executeTags.getRowCount()\n\n\t\t\n\t\ttagPaths \u003d [\n\t\t\texecuteTags.getValueAt(executeIndex,0)\n\t\t\t,\"[.]Index\"\n\t\t\t,\"[.]IndexMax\"\n\t\t\t,\"[.]Tag\"\n\t\t\t,\"[.]Timestamp\"\n\t\t]\n\t\tvalues \u003d [\n\t\t\t True\n\t\t\t,executeIndex\n\t\t\t,executeTags.getRowCount() - 1\n\t\t\t,executeTags.getValueAt(executeIndex,0)\n\t\t\t,system.date.now()\n\t\t]\n\t\t\n\t\tsystem.tag.writeBlocking(tagPaths, values)"
+              }
+            ],
+            "valueSource": "expr",
+            "expression": "if({[.]Enabled},toMillis({[.]../Clock}),0)",
+            "dataType": "Int8",
+            "name": "Logic",
+            "formatString": "#,##0.##",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "TagList",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "UdtList",
+            "value": "{\"columns\":[{\"name\":\"abca\",\"type\":\"java.lang.String\"},{\"name\":\"dff\",\"type\":\"java.lang.Boolean\"}],\"rows\":[[\"d\",false]]}",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "ExecuteTags",
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tif currentValue.value:\n\t\tstartTime \u003d system.date.now()\n\t\ttypeId \u003d \u0027Exchange/DataCenterDemo/Equipment/Heatmap/Summary\u0027\n\t\tpathToParentFolder \u003d system.tag.readBlocking([\"[.]../Parameters.PathToParentFolder\"])[0].value\n\t\t\n\t\tudtPaths \u003d system.tag.browse(pathToParentFolder, {\u0027typeId\u0027: typeId, \u0027tagType\u0027:\u0027UdtInstance\u0027, \u0027recursive\u0027: True})\n\t\tdef makeName(p):\n\t\t\tfullPath \u003d str(p[\u0027fullPath\u0027])\n\t\t\treturn \"-\".join(fullPath.split(\u0027/\u0027)[2:5])\n\t\t\n\t\tudtList \u003d system.dataset.toDataSet([\u0027path\u0027,\u0027name\u0027], [[str(path[\u0027fullPath\u0027]),  makeName(path)] for path in udtPaths])\n\t\t\n\t\texecuteList \u003d []\n\t\tgenerateList \u003d []\n\t\tfor i in xrange(udtList.getRowCount()):\n\t\t\tet \u003d system.tag.browse(udtList.getValueAt(i,0), {\u0027name\u0027: \u0027*Execute\u0027, \u0027tagType\u0027:\u0027AtomicTag\u0027, \u0027recursive\u0027: True})\n\t\t\tfor t in et:\n\t\t\t\texecuteList.append([str(t[\u0027fullPath\u0027])])\n\t\t\t\t\n\t\t\tgt \u003d system.tag.browse(udtList.getValueAt(i,0), {\u0027name\u0027: \u0027*Generate\u0027, \u0027tagType\u0027:\u0027AtomicTag\u0027, \u0027recursive\u0027: True})\n\t\t\tfor t in gt:\n\t\t\t\tgenerateList.append([str(t[\u0027fullPath\u0027])])\n\t\t\t\t\n\t\texecuteTags \u003d system.dataset.toDataSet([\u0027path\u0027], executeList)\n\t\tgenerateTags \u003d system.dataset.toDataSet([\u0027path\u0027], generateList)\n\t\t\n\t\ttagPaths \u003d [\n\t\t\t \"[.]Status\"\n \t\t\t,\"[.]UdtList\"\n \t\t\t,\"[.]ExecuteTags\"\n \t\t\t,\"[.]GenerateTags\"\n\t\t\t,tagPath\n\t\t\t,\"[.]TagListBrowseTime\"\n\t\t] + list(generateTags.getColumnAsList(0))\n\t\t\n\t\tvalues \u003d [\n\t\t\t\u0027Last Browsed @ %s \u0027 % (system.date.now())\n\t\t\t,udtList\n\t\t\t,executeTags\n\t\t\t,generateTags\n\t\t\t,False\n\t\t\t,system.date.millisBetween(startTime, system.date.now())\n\t\t] + [True] * generateTags.getRowCount()\n\t\t\n\t\tsystem.tag.writeBlocking(tagPaths, values)\n"
+              }
+            ],
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "name": "TagListBrowse",
+            "value": true,
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tif currentValue.value:\n\t\tsystem.tag.writeAsync([\"[.]TagListBrowse\"], [True])"
+              }
+            ],
+            "valueSource": "expr",
+            "expression": "if({[.]../Execute/Enabled},toMillis({[.]../ClockMinute}),0)",
+            "dataType": "Int8",
+            "name": "TagListBrowseTrigger",
+            "formatString": "#,##0.##",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "GenerateTags",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "name": "TagListBrowseTime",
+            "value": 0,
+            "engUnit": "ms",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "Status",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AisleCold",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "expr",
+        "expression": "split({[.].typeId},\u0027/\u0027)[len(split({[.].typeId},\u0027/\u0027))-1,0]",
+        "dataType": "String",
+        "documentation": "AisleType",
+        "name": "AisleType",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "if({[.]AisleType} \u003d \u0027AisleHot\u0027, \u0027HA\u0027, \u0027CA\u0027) + toInt(replace({RootInstanceName},\u0027Aisle\u0027,\u0027\u0027)/2)",
+        "dataType": "String",
+        "documentation": "Name",
+        "name": "Name",
+        "value": "",
+        "engUnit": "",
+        "tagType": "AtomicTag"
+      },
+      {
+        "name": "Sensor1",
+        "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/SensorCold",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Sensor2",
+        "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/SensorCold",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Sensor3",
+        "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/SensorCold",
+        "tagType": "UdtInstance"
+      }
+    ]
+  }
+]

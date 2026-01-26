@@ -1,0 +1,20 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "user1_delete.png"
+  ],
+  "attributes": {
+    "width": 24,
+    "format": "PNG",
+    "lastModification": {
+      "actor": "import",
+      "timestamp": "2026-01-25T18:30:51Z"
+    },
+    "size": 888,
+    "lastModificationSignature": "b098290bd7ee881bd794937f88baf941fdbbcb158ca1d75284dfc8395fe63108",
+    "height": 24
+  }
+}

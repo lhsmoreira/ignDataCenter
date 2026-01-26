@@ -1,0 +1,829 @@
+[
+  {
+    "name": "AggregateCurrentHistory",
+    "typeId": "",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "eventScripts": [
+          {
+            "eventid": "valueChanged",
+            "script": "\t\tif currentValue.value:\n\t\t\tscriptStart \u003d system.date.now()\n\t\t\t\n\t\t\treadPaths \u003d [\u0027%s/CurrentA\u0027, \u0027%s/CurrentB\u0027, \u0027%s/CurrentC\u0027, \u0027%s/CurrentAbcMean\u0027]\n\t\t\taggregationModesList \u003d [\"Minimum\", \"Average\", \"Maximum\"]\n\t\t\taggregationTags \u003d [\"%s24HourLow\", \"%s24HourMean\", \"%s24HourHigh\"]\n\t\t\t\n\t\t\trootPath \u003d \u0027/\u0027.join(tagPath.split(\u0027/\u0027)[0:-2])\n\t\t\t\n\t\t\tpaths \u003d [p % rootPath for p in readPaths for am in aggregationModesList]\n\t\t\taggregationModes \u003d [am for p in readPaths for am in aggregationModesList]\n\t\t\twritePaths \u003d [at % (p % rootPath) for p in readPaths for at in aggregationTags]\n\t\t\t\n\t\t\tstartTime \u003d system.date.addHours(scriptStart, -24)\n\t\t\tdataset \u003d system.tag.queryTagHistory(\n\t\t\t\tpaths\u003dpaths\n\t\t\t\t, startDate\u003dstartTime\n\t\t\t\t, endDate\u003dscriptStart\n\t\t\t\t, returnSize\u003d1\n\t\t\t\t, aggregationModes\u003daggregationModes\n\t\t\t\t, returnFormat\u003d\u0027Wide\u0027\n\t\t\t)\n\t\t\twriteValues \u003d [dataset.getValueAt(0, i) for i in xrange(1,dataset.getColumnCount())]\n\t\t\tsystem.tag.writeAsync(writePaths, writeValues)"
+          }
+        ],
+        "valueSource": "reference",
+        "dataType": "DateTime",
+        "sourceTagPath": "[~]Exchange/DataCenterDemo/HeatmapOrchestrator/ClockSlow",
+        "name": "Trigger",
+        "formatString": "yyyy-MM-dd h:mm:ss aa",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "KPI",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 2.1,
+        "documentation": "Carbon Usage Effectiveness (CUE)",
+        "historyEnabled": true,
+        "name": "CarbonUsageEffectiveness",
+        "value": 0.0,
+        "engLow": 1.5,
+        "engUnit": "kg/kWh",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 0.65,
+        "documentation": "Cooling Capacity",
+        "historyEnabled": true,
+        "name": "CoolingCapacity",
+        "value": 0.6,
+        "engLow": 0.6,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "engHigh": 2.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]CurrentPueDeltaFromDayPrior.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]CurrentPueDeltaFromDayPrior.EngHigh}+ \u0027 \u0027 + {[.]CurrentPueDeltaFromDayPrior.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]CurrentPueDeltaFromDayPrior.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]CurrentPueDeltaFromDayPrior.EngLow}+ \u0027 \u0027 + {[.]CurrentPueDeltaFromDayPrior.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Current PUE delta from day prior",
+        "name": "CurrentPueDeltaFromDayPrior",
+        "value": 1.15,
+        "engLow": 1.03,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 0.82,
+        "documentation": "Energy Efficiency Ratio",
+        "historyEnabled": true,
+        "name": "EnergyEfficiencyRatio",
+        "value": 0.8,
+        "engLow": 0.77,
+        "engUnit": "",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "Outdoor Dry Bulb Temperature",
+        "historyEnabled": true,
+        "name": "OutdoorDryBulbTemperature",
+        "value": 24.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "documentation": "Outdoor Relative Humidity",
+        "historyEnabled": true,
+        "name": "OutdoorRelativeHumidity",
+        "value": 0.5,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 2.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]PowerUsageEffectiveness.EngHigh}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]PowerUsageEffectiveness.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]PowerUsageEffectiveness.EngLow}+ \u0027 \u0027 + {[.]PowerUsageEffectiveness.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Power Usage Effectiveness (PUE)",
+        "engLow": 1.03,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "PowerUsageEffectiveness",
+        "value": 1.15,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 21.0,
+        "documentation": "SLA Temp",
+        "historyEnabled": true,
+        "name": "SlaTemp",
+        "value": 20.0,
+        "engLow": 19.0,
+        "engUnit": "°C",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Sum of active alarms",
+        "historyEnabled": true,
+        "name": "SumOfActiveAlarms",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "documentation": "Sum of overridden points",
+        "historyEnabled": true,
+        "name": "SumOfOverriddenPoints",
+        "value": 0,
+        "engUnit": "n/a",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "engHigh": 1150.0,
+        "alarms": [
+          {
+            "mode": "AboveValue",
+            "name": "AlarmAbove",
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]TotalFacilityItLoadKw.EngHigh}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Above \u0027 + {[.]TotalFacilityItLoadKw.EngHigh}+ \u0027 \u0027 + {[.]TotalFacilityItLoadKw.EngUnit}"
+            }
+          },
+          {
+            "mode": "BelowValue",
+            "name": "AlarmBelow",
+            "priority": "High",
+            "ackMode": "Auto",
+            "setpointA": {
+              "bindType": "Expression",
+              "value": "{[.]TotalFacilityItLoadKw.EngLow}"
+            },
+            "label": {
+              "bindType": "Expression",
+              "value": "\u0027Below \u0027 + {[.]TotalFacilityItLoadKw.EngLow}+ \u0027 \u0027 + {[.]TotalFacilityItLoadKw.EngUnit}"
+            }
+          }
+        ],
+        "documentation": "Total Facility IT Load (kW)",
+        "engLow": 850.0,
+        "engUnit": "kW",
+        "tagType": "AtomicTag",
+        "dataType": "Int8",
+        "historyProvider": "DataCenter",
+        "historyEnabled": true,
+        "name": "TotalFacilityItLoadKw",
+        "value": 0,
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 0.98,
+        "documentation": "UPS Capacity",
+        "historyEnabled": true,
+        "name": "UpsCapacity",
+        "value": 0.95,
+        "engLow": 0.9,
+        "engUnit": "%",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      },
+      {
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "nsu\u003durn:inductiveautomation:ignition:opcua:tags;s\u003d[DataCenterDemoSim]/{PathToTag}"
+        },
+        "valueSource": "opc",
+        "dataType": "Float8",
+        "historyProvider": "DataCenter",
+        "engHigh": 10.0,
+        "documentation": "Water Usage Effectiveness (WUE)",
+        "historyEnabled": true,
+        "name": "WaterUsageEffectiveness",
+        "value": 1.8,
+        "engLow": 0.2,
+        "engUnit": "L / kWh",
+        "tagType": "AtomicTag",
+        "opcServer": "Ignition OPC UA Server"
+      }
+    ]
+  },
+  {
+    "name": "Info",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "expr",
+        "expression": "split(split({PathToTag},\u0027/\u0027+{TagName})[1,0],\u0027/\u0027)[0]",
+        "dataType": "String",
+        "name": "DataHall",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "replace(split(split({PathToTag},\u0027/\u0027+{[.]EquipmentType}+\u0027/\u0027)[1,0],\u0027/\u0027)[0],{[.]EquipmentType},\"\")",
+        "dataType": "String",
+        "name": "EquipmentId",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "split(split({PathToTag},\u0027/Section\u0027+{[.]Section}+\u0027/\u0027)[1,0],\u0027/\u0027)[0]",
+        "dataType": "String",
+        "name": "EquipmentType",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "\u0027Site \u0027+{[.]Site}\r\n+ try(\u0027 - Data Hall \u0027+{[.]DataHall},\u0027\u0027)\r\n+ try(\u0027 - Section \u0027+{[.]Section},\u0027\u0027)\r\n+ try(\u0027 - \u0027+{[.]EquipmentType}+\u0027 \u0027+{[.]EquipmentId},\u0027\u0027)",
+        "dataType": "String",
+        "name": "PopupTitle",
+        "value": "Placeholder",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "split(split({PathToTag},\u0027/\u0027+{TagName})[1,0],\u0027/\u0027)[0]",
+        "dataType": "String",
+        "name": "Section",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "dataType": "String",
+        "name": "SerialNumber",
+        "value": "SN123456",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "expr",
+        "expression": "split(split({PathToTag},\u0027/\u0027+{TagName})[1,0],\u0027/\u0027)[0]",
+        "dataType": "String",
+        "name": "Site",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "SustainabilityComplianceReport",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "KeyFigures",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "AverageColdAisleSetpoint",
+            "value": "24°C",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "TotalEnergyConsumption",
+            "value": "5000MWh",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "RenewableEnergy",
+            "value": "10%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "TotalWaterUsage",
+            "value": "3.1M gal",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float4",
+            "name": "PowerUsageEffectiveness",
+            "value": 1.15,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float4",
+            "name": "CoolingEfficiencyRatio",
+            "value": 0.75,
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AggregateTags",
+    "parameters": {
+      "UseExpressions": {
+        "dataType": "Integer",
+        "value": 1
+      },
+      "AtomicName": {
+        "dataType": "String",
+        "value": "Temperature"
+      },
+      "TypeIdInstanceName": {
+        "dataType": "String",
+        "value": "*"
+      },
+      "EnableDatasetInput": {
+        "dataType": "Integer",
+        "value": 1
+      },
+      "TypeId": {
+        "dataType": "String",
+        "value": "[DataCenterDemo]_types_/Exchange/DataCenterDemo/Equipment/Heatmap/Sensor"
+      },
+      "TimesNested": {
+        "dataType": "Integer",
+        "value": 0
+      },
+      "EnableAutomaticTrigger": {
+        "dataType": "Integer",
+        "value": 0
+      }
+    },
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Config",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "Dataset",
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tsystem.tag.writeAsync([\"[.]ExecuteGenerate\"], [True])"
+              }
+            ],
+            "valueSource": "expr",
+            "expression": "jsonGet(\r\n\t\"{\u0027doc\u0027:{\"\r\n\t\t+\"\u0027AtomicName\u0027:\u0027\"+{AtomicName}+\"\u0027\"\r\n\t\t+\",\u0027EnableAutomaticTrigger\u0027:\"+{EnableAutomaticTrigger}\r\n\t\t+\",\u0027EnableDatasetInput\u0027:\"+{EnableDatasetInput}\r\n\t\t+\",\u0027TypeId\u0027:\u0027\"+{TypeId}+\"\u0027\"\r\n\t\t+\",\u0027TypeIdInstanceName\u0027:\u0027\"+{TypeIdInstanceName}+\"\u0027\"\r\n\t\t+\",\u0027UseExpressions\u0027:\"+{UseExpressions}\r\n\t+\"}}\"\r\n, \"doc\")",
+            "dataType": "Document",
+            "name": "ParameterWatchdog",
+            "value": {
+              "key": "value",
+              "key_1": "value"
+            },
+            "tagType": "AtomicTag"
+          },
+          {
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tif currentValue.value:\n\t\tstartTime \u003d system.date.now()\n\t\t\n\t\t# read tags and parameters\n\t\ttags \u003d system.tag.readBlocking([\n\t\t\t  \"[.]../Parameters.PathToParentFolder\"\n\t\t\t, \"[.]../Parameters.atomicName\"\n\t\t\t, \"[.]../Parameters.TypeId\"\n\t\t\t, \"[.]../Parameters.TypeIdInstanceName\"\n\t\t\t, \"[.]../Parameters.EnableDatasetInput\"\n\t\t\t, \"[.]DatasetInput\"\n\t\t\t, \"[.]../Parameters.UseExpressions\"\n\t\t\t, \"[.]../Parameters.TimesNested\"\n\t\t\t, \"[.]RootInstanceName\"\n\t\t])\n\t\tpathToThisUdt \u003d tags[0].value\t\n\t\tatomicName \u003d tags[1].value\n\t\ttypeId \u003d tags[2].value\n\t\ttypeIdInstanceName \u003d tags[3].value\n\t\tenableDatasetInput \u003d tags[4].value\n\t\tdatasetInput \u003d tags[5].value\n\t\tuseExpressions \u003d tags[6].value\n\t\ttimesNested \u003d tags[7].value\n\t\trootInstanceName \u003d tags[8].value\n\t\t\n\t\t# if this UDT is nested in other UDT correct path\n\t\tpathToParentFolder \u003d pathToThisUdt\n\t\tignorePath \u003d \u0027%s/%s\u0027 % (pathToThisUdt, rootInstanceName)\n\t\tif timesNested \u003e 0:\n\t\t\tpathToParentFolder \u003d \u0027/\u0027.join(pathToThisUdt.split(\u0027/\u0027)[:-timesNested])\n\t\t\tif timesNested \u003e 1:\n\t\t\t\tignorePath \u003d \u0027/\u0027.join(pathToThisUdt.split(\u0027/\u0027)[:-(timesNested-1)])\n\n\t\t\n\t\t# determine if using input dataset or browsing\n\t\tif enableDatasetInput \u003d\u003d 0:\n\t\t\t# browsing\n\t\t\t# if TypeId is defined search for it, otherwise look for atomic tags\n\t\t\tif typeId \u003d\u003d \u0027*\u0027:\n\t\t\t\tudts \u003d [{\u0027fullPath\u0027: pathToParentFolder}]\n\t\t\telse:\n\t\t\t\tudts \u003d system.tag.browse(pathToParentFolder, \n\t\t\t\t\t{\u0027typeId\u0027: typeId.rsplit(\u0027_types_/\u0027)[-1], \u0027name\u0027: typeIdInstanceName, \u0027tagType\u0027:\u0027UdtInstance\u0027, \u0027recursive\u0027: True}\n\t\t\t\t).getResults()\n\t\t\t\n\t\n\t\t\t# browse every UDT for atomic tags to compile a dataset of tags\n\t\t\ttagPaths \u003d []\n\t\t\tfor udt in udts:\n\t\t\t\tatomics \u003d system.tag.browse(str(udt[\u0027fullPath\u0027]), \n\t\t\t\t\t{\u0027tagType\u0027:\u0027AtomicTag\u0027, \u0027name\u0027: atomicName,\u0027recursive\u0027:True}\n\t\t\t\t).getResults()\n#\t\t\t\ttagPaths +\u003d [str(atomic[\u0027fullPath\u0027]) for atomic in atomics]\n\t\t\t\ttagPaths +\u003d [str(atomic[\u0027fullPath\u0027]) for atomic in atomics if ignorePath not in str(atomic[\u0027fullPath\u0027])]\n\t\telse:\n\t\t\t# using input dataset\n\t\t\tif datasetInput:\n\t\t\t\ttagPaths \u003d list(datasetInput.getColumnAsList(0))\n\t\t\telse:\n\t\t\t\ttagPaths \u003d []\n\t\tbrowseEnd \u003d system.date.now()\t\n\t\t\n\t\t# read current tag values and convert to dataset\n\t\tif tagPaths:\n\t\t\ttagValues \u003d system.tag.readBlocking(tagPaths)\n\t\t\tdata \u003d [[tagPaths[i], tagValues[i].value] for i in xrange(len(tagPaths))]\n\t\telse:\n\t\t\tdata \u003d []\n\t\theaders \u003d [\u0027fullPath\u0027, \u0027value\u0027]\n\t\tdataset \u003d system.dataset.toDataSet(headers, data)\n\t\t\n\t\t# configure tags to use expressions or keep default\n\t\tlistOfTags \u003d \u0027{%s}\u0027 % \u0027},{\u0027.join([tp for tp in tagPaths])\n\t\taggTags \u003d system.tag.getConfiguration(\"[.]../Output\", True)\n\t\tfor aTag in aggTags[0][\u0027tags\u0027]:\n\t\t\tif useExpressions:\n\t\t\t\tif aTag[\u0027name\u0027] \u003d\u003d \u0027Count\u0027:\n\t\t\t\t\taTag.pop(\u0027expression\u0027, None) # will return to original \n\t\t\t\telse:\n\t\t\t\t\taTag[\u0027expression\u0027] \u003d \u0027%s(%s)\u0027 % (aTag[\u0027name\u0027], listOfTags)\n\t\t\telse:\n\t\t\t\taTag.pop(\u0027expression\u0027, None) # will return to original \n\t\t\t\t\n\t\t\t# remove unnecessary properties to reduce overrides\n\t\t\taTag.pop(\u0027valueSource\u0027, None)\n\t\t\taTag.pop(\u0027dataType\u0027, None)\n\t\tconf \u003d system.tag.configure(\"[.]../\", aggTags, collisionPolicy \u003d \u0027o\u0027)\n\t\t\t\n\t\t# write to tags\n\t\twritePaths \u003d [\n\t\t\t \"[.]Dataset\"\n\t\t\t,\"[.]Status\"\n\t\t\t,\"[.]ExecuteTime\"\n\t\t\t,tagPath\n\t\t]\n\t\twriteValues \u003d [\n\t\t\tdataset\n#\t\t\t,\u0027Path: %s Browse: %d Config: %d\u0027 % (pathToParentFolder, system.date.millisBetween(startTime, browseEnd), system.date.millisBetween(browseEnd, system.date.now()))\n\t\t\t,\u0027BrowsePath: %s IgnorePath: %s Browse: %d Config: %d\u0027 % (pathToParentFolder, ignorePath, system.date.millisBetween(startTime, browseEnd), system.date.millisBetween(browseEnd, system.date.now()))\n\t\t\t,system.date.millisBetween(startTime, system.date.now())\n\t\t\t,False\n\t\t]\n\t\tsystem.tag.writeAsync(writePaths, writeValues)"
+              }
+            ],
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "name": "ExecuteGenerate",
+            "value": true,
+            "tagType": "AtomicTag"
+          },
+          {
+            "enabled": {
+              "bindType": "parameter",
+              "binding": "{EnableAutomaticTrigger}"
+            },
+            "eventScripts": [
+              {
+                "eventid": "valueChanged",
+                "script": "\tsystem.tag.writeAsync([\"[.]ExecuteGenerate\"], [True])"
+              }
+            ],
+            "valueSource": "expr",
+            "expression": "{[~]Exchange/DataCenterDemo/HeatmapOrchestrator/ClockSlow}",
+            "dataType": "DateTime",
+            "name": "AutomaticTrigger",
+            "formatString": "yyyy-MM-dd h:mm:ss aa",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "name": "ExecuteTime",
+            "value": 0,
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "name": "Status",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{RootInstanceName}",
+            "dataType": "String",
+            "name": "RootInstanceName",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "DataSet",
+            "name": "DatasetInput",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Output",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "sum({[.]../Config/Dataset},\u0027value\u0027)",
+            "dataType": "Float4",
+            "name": "Sum",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "max({[.]../Config/Dataset},\u0027value\u0027)",
+            "dataType": "Float4",
+            "name": "Max",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "min({[.]../Config/Dataset},\u0027value\u0027)",
+            "dataType": "Float4",
+            "name": "Min",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "len({[.]../Config/Dataset})",
+            "name": "Count",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]../Config/Dataset},\u0027value\u0027)",
+            "dataType": "Float4",
+            "name": "Mean",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ArchitectureMetrics",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Database",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Int4",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Active Connections",
+            "value": 0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Logging",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Int4",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Errors Per Minute",
+            "formatString": "#,##0",
+            "pdsFunction": "random(0.0, 1.5, true)",
+            "value": 0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Int4",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Errors Per Hour",
+            "formatString": "#,##0",
+            "pdsFunction": "random(0.0, 5.0, true)",
+            "value": 0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      },
+      {
+        "name": "Sessions",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Clients",
+            "pdsFunction": "random(0.0, 5.0, true)",
+            "value": 0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Designers",
+            "pdsFunction": "random(0.0, 2.0, true)",
+            "value": 0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Perspective Sessions",
+            "pdsFunction": "random(10.0, 20.0, true)",
+            "value": 0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      },
+      {
+        "name": "System",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "Memory Usage",
+            "pdsFunction": "ramp(27.0, 38.0, 1.0~, true)",
+            "value": 0.0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "CPU Usage",
+            "pdsFunction": "ramp(3.0, 18.0, 1.0~, true)",
+            "value": 0.0,
+            "historySampleRate": 30,
+            "sampleMode": "Periodic",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Overrides",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "dataType": "DataSet",
+        "name": "Dataset",
+        "value": "{\"columns\":[{\"name\":\"id\",\"type\":\"java.lang.String\"},{\"name\":\"tagPath\",\"type\":\"java.lang.String\"},{\"name\":\"demoScope\",\"type\":\"java.lang.String\"},{\"name\":\"typicalValue\",\"type\":\"java.lang.String\"},{\"name\":\"notes\",\"type\":\"java.lang.String\"},{\"name\":\"parameters\",\"type\":\"java.lang.String\"}],\"rows\":[[\"\",\"[DataCenterDemoSim]Exchange/DataCenterDemo/Site1/DataHall1/Section1/AHU/AHU5/Status/IsAhuRunning\",\"Simulated\",\"FALSE\",\"2 min on, 2min off\",\"square(0,1,240,true)\"],[\"\",\"[DataCenterDemoSim]Exchange/DataCenterDemo/Site1/DataHall1/Section3/AHU/AHU2/Temperature/SupplyAirTemperature\",\"Simulated\",\"\u003e24\",\"\",\"sine(21,26,100,true)\"],[\"\",\"[DataCenterDemoSim]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Breaker/Breaker4A/Status/IsBreakerTripped\",\"Static\",\"TRUE\",\"Persistent\",\"\"],[\"\",\"[DataCenterDemoSim]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Heatmap/Aisle3/Sensor1/Temperature\",\"Simulated\",\"\u003e24\",\"Minimum 1 alarm per page every 10 min\",\"sine(21,26,300,true)\"],[\"\",\"[DataCenterDemoSim]Exchange/DataCenterDemo/Site1/DataHall1/Section2/UPS/UPS1A/Battery/BatteryCapacityRemaining\",\"Simulated\",\"\u003c30\",\"\",\"sine(20,90,100,true)\"],[\"\",\"[DataCenterDemoSim]Exchange/DataCenterDemo/Site1/DataHall1/Section2/PQM/PQM1A/PQ/ThdVoltageAN\",\"Simulated\",\"\u003e8\",\"\",\"sine(0.5,9.5,100,true)\"]]}",
+        "tagType": "AtomicTag"
+      }
+    ]
+  },
+  {
+    "name": "AlarmInfo",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "valueSource": "memory",
+        "name": "ActiveAlarmCount",
+        "value": 0,
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "name": "ActiveAlarmHighestPriority",
+        "value": 0,
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "name": "AlarmCount24Hr",
+        "tagType": "AtomicTag"
+      },
+      {
+        "eventScripts": [
+          {
+            "eventid": "valueChanged",
+            "script": "\tif not initialChange:\n\t\tstartTime \u003d system.date.now()\n\t\talarms \u003d system.alarm.queryStatus(source \u003d [\u0027*DataCenterDemo:*\u0027], state \u003d [\u0027ActiveUnacked\u0027, \u0027ActiveAcked\u0027])\n\t\t\n\t\talarmMap \u003d {\"Low\": 1, \"High\": 3}\n\t\t\n\t\tpriorities \u003d set([alarmMap.get(str(alarm.get(\"priority\"))) for alarm in alarms])\n\t\t\n\t\tif len(priorities) \u003d\u003d 0:\n\t\t\t# No alarms.\n\t\t\thighestPriority \u003d -1\n\t\telse:\n\t\t\thighestPriority \u003d max(priorities)\n\n\n\t\talarmJournal \u003d system.alarm.queryJournal(system.date.addDays(startTime, -1),startTime, journalName\u003d\"DataCenterDemoJournal\")\n\t\t\n\t\tpaths \u003d [\u0027[.]ActiveAlarmHighestPriority\u0027, \u0027[.]ActiveAlarmCount\u0027, \"[.]AlarmCount24Hr\", \"[.]ScriptTimeMs\"]\n\t\tvalues \u003d [highestPriority, len(alarms), len(alarmJournal), system.date.millisBetween(startTime, system.date.now())]\n\n\t\tsystem.tag.writeAsync(paths, values)"
+          }
+        ],
+        "valueSource": "expr",
+        "expression": "now(2500)",
+        "dataType": "DateTime",
+        "name": "GetAlarmInfoScript",
+        "formatString": "yyyy-MM-dd h:mm:ss aa",
+        "tagType": "AtomicTag"
+      },
+      {
+        "valueSource": "memory",
+        "name": "ScriptTimeMs",
+        "value": 0,
+        "tagType": "AtomicTag"
+      }
+    ]
+  }
+]

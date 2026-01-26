@@ -1,0 +1,12 @@
+[
+  {
+    "name": "GEN1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/GEN",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "GEN1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/GEN",
+    "tagType": "UdtInstance"
+  }
+]

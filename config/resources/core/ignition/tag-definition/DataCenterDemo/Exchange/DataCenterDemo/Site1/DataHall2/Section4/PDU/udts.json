@@ -1,0 +1,122 @@
+[
+  {
+    "name": "PDU10B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU6B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU9A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU10A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU7A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU8A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU3A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU11B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU2B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU2A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU12B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU5A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU4A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU7B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU3B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU11A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU12A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU6A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU4B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU5B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU9B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PDU8B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PDU/PDU",
+    "tagType": "UdtInstance"
+  }
+]

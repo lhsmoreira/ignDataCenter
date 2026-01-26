@@ -1,0 +1,22 @@
+[
+  {
+    "name": "PQM1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PQM",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PQM2A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PQM",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PQM2B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PQM",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "PQM1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/PQM",
+    "tagType": "UdtInstance"
+  }
+]

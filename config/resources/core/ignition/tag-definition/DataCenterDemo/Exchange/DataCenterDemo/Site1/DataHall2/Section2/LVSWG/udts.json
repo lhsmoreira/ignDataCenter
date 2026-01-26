@@ -1,0 +1,12 @@
+[
+  {
+    "name": "LVSWG1B",
+    "typeId": "Exchange/DataCenterDemo/Equipment/LVSWG",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "LVSWG1A",
+    "typeId": "Exchange/DataCenterDemo/Equipment/LVSWG",
+    "tagType": "UdtInstance"
+  }
+]

@@ -1,0 +1,294 @@
+[
+  {
+    "name": "Site",
+    "typeId": "Exchange/DataCenterDemo/AggregateArea/Site",
+    "tagType": "UdtInstance",
+    "tags": [
+      {
+        "name": "Aggregate",
+        "tagType": "UdtInstance",
+        "tags": [
+          {
+            "name": "HaMeanTemperature",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HaMeanTemperature})",
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HaMeanTemperature})",
+                    "enabled": false,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HaMeanTemperature})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HaMeanTemperature})",
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "CompositePerformanceIndex",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/CompositePerformanceIndex})",
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/CompositePerformanceIndex})",
+                    "enabled": false,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/CompositePerformanceIndex})",
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/CompositePerformanceIndex},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/CompositePerformanceIndex})",
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "HottestHaTemperature",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestHaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestHaTemperature})",
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestHaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestHaTemperature})",
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestHaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestHaTemperature})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestHaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestHaTemperature})",
+                    "enabled": false,
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "EnergyEfficiencyRatio",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/EnergyEfficiencyRatio})",
+                    "enabled": false,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/EnergyEfficiencyRatio})",
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/EnergyEfficiencyRatio})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/Section4/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section1/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section2/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section3/Section/EnergyEfficiencyRatio},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Section/EnergyEfficiencyRatio})",
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "HottestCaTemperature",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestCaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestCaTemperature})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestCaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestCaTemperature})",
+                    "enabled": false,
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestCaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestCaTemperature})",
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/HottestCaTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/HottestCaTemperature})",
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "CaMeanTemperature",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/CaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/CaMeanTemperature})",
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/CaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/CaMeanTemperature})",
+                    "enabled": false,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/CaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/CaMeanTemperature})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/CaMeanTemperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/CaMeanTemperature})",
+                    "enabled": false,
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Alarms",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ActiveAlarmCount},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ActiveAlarmCount})",
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ActiveAlarmCount},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ActiveAlarmCount})",
+                    "enabled": false,
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ActiveAlarmCount},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ActiveAlarmCount})",
+                    "enabled": false,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ActiveAlarmCount},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ActiveAlarmCount})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ItLoadMw",
+            "tagType": "UdtInstance",
+            "tags": [
+              {
+                "name": "Output",
+                "tagType": "Folder",
+                "tags": [
+                  {
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ItLoadMw},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ItLoadMw})",
+                    "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ItLoadMw},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ItLoadMw})",
+                    "enabled": false,
+                    "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ItLoadMw},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ItLoadMw})",
+                    "enabled": false,
+                    "name": "Min",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall1/DataHall/ItLoadMw},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/DataHall/ItLoadMw})",
+                    "enabled": false,
+                    "name": "Mean",
+                    "tagType": "AtomicTag"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

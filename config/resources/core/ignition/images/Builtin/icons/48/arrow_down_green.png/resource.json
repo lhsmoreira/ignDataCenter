@@ -1,0 +1,20 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "arrow_down_green.png"
+  ],
+  "attributes": {
+    "width": 48,
+    "format": "PNG",
+    "lastModification": {
+      "actor": "import",
+      "timestamp": "2026-01-25T18:30:51Z"
+    },
+    "size": 715,
+    "lastModificationSignature": "6311c9aecdaac8688f9cc05c12c043360e2f1fe840f13bae3c59222d5227423f",
+    "height": 48
+  }
+}

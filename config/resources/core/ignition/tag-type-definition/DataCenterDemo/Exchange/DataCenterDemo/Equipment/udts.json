@@ -1,0 +1,3791 @@
+[
+  {
+    "name": "LVSWG",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Gen",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsGeneratorSurgeProtectionDeviceHealthy.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsGeneratorSurgeProtectionDeviceHealthy.EngLow}+ \u0027 \u0027 + {[.]IsGeneratorSurgeProtectionDeviceHealthy.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Generator Surge Protection Device Healthy",
+            "name": "IsGeneratorSurgeProtectionDeviceHealthy",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsGeneratorMainBreakerTripped.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsGeneratorMainBreakerTripped.EngHigh}+ \u0027 \u0027 + {[.]IsGeneratorMainBreakerTripped.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Generator Main Breaker Tripped",
+            "name": "IsGeneratorMainBreakerTripped",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsGeneratorMainBreakerClosed.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsGeneratorMainBreakerClosed.EngHigh}+ \u0027 \u0027 + {[.]IsGeneratorMainBreakerClosed.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Generator Main Breaker Closed",
+            "name": "IsGeneratorMainBreakerClosed",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsGeneratorMainBreakerInMaintenanceMode.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsGeneratorMainBreakerInMaintenanceMode.EngHigh}+ \u0027 \u0027 + {[.]IsGeneratorMainBreakerInMaintenanceMode.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Generator Main Breaker in Maintenance Mode",
+            "name": "IsGeneratorMainBreakerInMaintenanceMode",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Load",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]LoadBreakerStatusMcbN.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]LoadBreakerStatusMcbN.EngLow}+ \u0027 \u0027 + {[.]LoadBreakerStatusMcbN.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Load Breaker (MCB) n Closed",
+            "name": "LoadBreakerStatusMcbN",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]LoadBreakerTrippedMcbN.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]LoadBreakerTrippedMcbN.EngHigh}+ \u0027 \u0027 + {[.]LoadBreakerTrippedMcbN.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Load Breaker (MCB) n Tripped",
+            "name": "LoadBreakerTrippedMcbN",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsControlPowerOn.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsControlPowerOn.EngLow}+ \u0027 \u0027 + {[.]IsControlPowerOn.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Control Power On",
+            "name": "IsControlPowerOn",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../utility/IsUtilityMainBreakerClosed/Alarms.ActiveAckCount}+{[.]../utility/IsUtilityMainBreakerClosed/Alarms.ActiveUnackCount}+{[.]../utility/IsUtilityMainBreakerTripped/Alarms.ActiveAckCount}+{[.]../utility/IsUtilityMainBreakerTripped/Alarms.ActiveUnackCount}+{[.]../utility/IsUtilityMainBreakerInMaintenanceMode/Alarms.ActiveAckCount}+{[.]../utility/IsUtilityMainBreakerInMaintenanceMode/Alarms.ActiveUnackCount}+{[.]../gen/IsGeneratorMainBreakerClosed/Alarms.ActiveAckCount}+{[.]../gen/IsGeneratorMainBreakerClosed/Alarms.ActiveUnackCount}+{[.]../gen/IsGeneratorMainBreakerTripped/Alarms.ActiveAckCount}+{[.]../gen/IsGeneratorMainBreakerTripped/Alarms.ActiveUnackCount}+{[.]../gen/IsGeneratorMainBreakerInMaintenanceMode/Alarms.ActiveAckCount}+{[.]../gen/IsGeneratorMainBreakerInMaintenanceMode/Alarms.ActiveUnackCount}+{[.]../load/LoadBreakerStatusMcbN/Alarms.ActiveAckCount}+{[.]../load/LoadBreakerStatusMcbN/Alarms.ActiveUnackCount}+{[.]../load/LoadBreakerTrippedMcbN/Alarms.ActiveAckCount}+{[.]../load/LoadBreakerTrippedMcbN/Alarms.ActiveUnackCount}+{[.]../status/IsControlPowerOn/Alarms.ActiveAckCount}+{[.]../status/IsControlPowerOn/Alarms.ActiveUnackCount}+{[.]../utility/IsUtilitySurgeProtectionDeviceHealthy/Alarms.ActiveAckCount}+{[.]../utility/IsUtilitySurgeProtectionDeviceHealthy/Alarms.ActiveUnackCount}+{[.]../gen/IsGeneratorSurgeProtectionDeviceHealthy/Alarms.ActiveAckCount}+{[.]../gen/IsGeneratorSurgeProtectionDeviceHealthy/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Utility",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsUtilityMainBreakerTripped.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsUtilityMainBreakerTripped.EngHigh}+ \u0027 \u0027 + {[.]IsUtilityMainBreakerTripped.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Utility Main Breaker Tripped",
+            "name": "IsUtilityMainBreakerTripped",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsUtilityMainBreakerInMaintenanceMode.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsUtilityMainBreakerInMaintenanceMode.EngHigh}+ \u0027 \u0027 + {[.]IsUtilityMainBreakerInMaintenanceMode.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Utility Main Breaker in Maintenance Mode",
+            "name": "IsUtilityMainBreakerInMaintenanceMode",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsUtilitySurgeProtectionDeviceHealthy.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsUtilitySurgeProtectionDeviceHealthy.EngLow}+ \u0027 \u0027 + {[.]IsUtilitySurgeProtectionDeviceHealthy.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Utility Surge Protection Device Healthy",
+            "name": "IsUtilitySurgeProtectionDeviceHealthy",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsUtilityMainBreakerClosed.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsUtilityMainBreakerClosed.EngLow}+ \u0027 \u0027 + {[.]IsUtilityMainBreakerClosed.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Utility Main Breaker Closed",
+            "name": "IsUtilityMainBreakerClosed",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "PQM",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Current",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current B 24 Hour Mean",
+            "name": "CurrentB24HourMean",
+            "value": 3975.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 150.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]WorstCurrentUnbalance.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]WorstCurrentUnbalance.EngHigh}+ \u0027 \u0027 + {[.]WorstCurrentUnbalance.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current Unbalance Worst",
+            "name": "WorstCurrentUnbalance",
+            "value": 126.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current A 24 Hour Mean",
+            "name": "CurrentA24HourMean",
+            "value": 3925.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current ABC Mean 24 Hour Low",
+            "name": "CurrentAbcMean24HourLow",
+            "value": 3920.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current B 24 Hour Low",
+            "name": "CurrentB24HourLow",
+            "value": 3750.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "name": "AggregateCurrentHistory",
+            "typeId": "Exchange/DataCenterDemo/AggregateCurrentHistory",
+            "tagType": "UdtInstance"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current B 24 Hour High",
+            "name": "CurrentB24HourHigh",
+            "value": 4100.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Current G",
+            "name": "CurrentG",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current C 24 Hour Low",
+            "name": "CurrentC24HourLow",
+            "value": 3750.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]CurrentA},{[.]CurrentB},{[.]CurrentC})",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 6000.0,
+            "documentation": "Current ABC Mean",
+            "historyEnabled": true,
+            "name": "CurrentAbcMean",
+            "value": 0.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 6000.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentA.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentA.EngHigh}+ \u0027 \u0027 + {[.]CurrentA.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentA.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]CurrentA.EngLow}+ \u0027 \u0027 + {[.]CurrentA.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current A",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "CurrentA",
+            "pdsFunction": "random(3750,4100,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current A 24 Hour Low",
+            "name": "CurrentA24HourLow",
+            "value": 3750.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current C 24 Hour High",
+            "name": "CurrentC24HourHigh",
+            "value": 4100.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current ABC Mean 24 Hour Mean",
+            "name": "CurrentAbcMean24HourMean",
+            "value": 3944.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current ABC Mean 24 Hour High",
+            "name": "CurrentAbcMean24HourHigh",
+            "value": 3961.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 6000.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentC.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentC.EngHigh}+ \u0027 \u0027 + {[.]CurrentC.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentC.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]CurrentC.EngLow}+ \u0027 \u0027 + {[.]CurrentC.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current C",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "CurrentC",
+            "pdsFunction": "random(3750,4100,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Current N",
+            "name": "CurrentN",
+            "value": 35.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current A 24 Hour High",
+            "name": "CurrentA24HourHigh",
+            "value": 4100.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current C 24 Hour Mean",
+            "name": "CurrentC24HourMean",
+            "value": 3930.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 6000.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentB.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentB.EngHigh}+ \u0027 \u0027 + {[.]CurrentB.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentB.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]CurrentB.EngLow}+ \u0027 \u0027 + {[.]CurrentB.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current B",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "CurrentB",
+            "pdsFunction": "random(3750,4100,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      },
+      {
+        "name": "Energy",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Reactive Energy Delivered",
+            "name": "ReactiveEnergyDelivered",
+            "value": 267.0,
+            "engUnit": "GWh",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Active Energy Delivered (Into Load)",
+            "name": "ActiveEnergyDeliveredIntoLoad",
+            "value": 2400.0,
+            "engUnit": "GWh",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Apparent Energy Delivered",
+            "name": "ApparentEnergyDelivered",
+            "value": 2565.0,
+            "engUnit": "GWh",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Freq",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 60.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]Frequency.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]Frequency.EngHigh}+ \u0027 \u0027 + {[.]Frequency.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]Frequency.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]Frequency.EngLow}+ \u0027 \u0027 + {[.]Frequency.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Frequency",
+            "name": "Frequency",
+            "pdsFunction": "ramp(59.7, 60.3, 1.0~, true)",
+            "value": 60.0,
+            "engLow": 59.5,
+            "engUnit": "MVA",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "PF",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 1.0,
+            "documentation": "Power Factor C",
+            "name": "PowerFactorC",
+            "value": 0.88,
+            "engLow": 0.0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 1.0,
+            "documentation": "Power Factor B",
+            "name": "PowerFactorB",
+            "value": 0.87,
+            "engLow": 0.0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Power/ActivePowerTotal}/{[.]../Power/ApparentPowerTotal}",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 1.0,
+            "documentation": "Power Factor Total",
+            "historyEnabled": true,
+            "name": "PowerFactorTotal",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 1.0,
+            "documentation": "Power Factor A",
+            "name": "PowerFactorA",
+            "value": 0.88,
+            "engLow": 0.0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "PQ",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ThdVoltageAN.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ThdVoltageAN.EngHigh}+ \u0027 \u0027 + {[.]ThdVoltageAN.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "THD Voltage A-N",
+            "engUnit": "%",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "ThdVoltageAN",
+            "pdsFunction": "3.3",
+            "value": 3.3,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ThdVoltageBN.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ThdVoltageBN.EngHigh}+ \u0027 \u0027 + {[.]ThdVoltageBN.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "THD Voltage B-N",
+            "name": "ThdVoltageBN",
+            "value": 3.6,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ThdVoltageCN.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ThdVoltageCN.EngHigh}+ \u0027 \u0027 + {[.]ThdVoltageCN.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "THD Voltage C-N",
+            "name": "ThdVoltageCN",
+            "value": 3.4,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ThdCurrentC.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ThdCurrentC.EngHigh}+ \u0027 \u0027 + {[.]ThdCurrentC.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "THD Current C",
+            "name": "ThdCurrentC",
+            "value": 3.3,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ThdCurrentA.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ThdCurrentA.EngHigh}+ \u0027 \u0027 + {[.]ThdCurrentA.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "THD Current A",
+            "name": "ThdCurrentA",
+            "value": 3.2,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ThdCurrentB.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ThdCurrentB.EngHigh}+ \u0027 \u0027 + {[.]ThdCurrentB.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "THD Current B",
+            "name": "ThdCurrentB",
+            "value": 3.5,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Power",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]ApparentPowerC} * {[.]../PF/PowerFactorC}",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Active Power C",
+            "name": "ActivePowerC",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]ApparentPowerA} * {[.]../PF/PowerFactorA}",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Active Power A",
+            "name": "ActivePowerA",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Voltage/VoltageLLMean}*{[.]../Current/CurrentA}*sqrt(3)/1000000",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Apparent Power A",
+            "name": "ApparentPowerA",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "sum({[.]ActivePowerA},{[.]ActivePowerB},{[.]ActivePowerC})",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 12.0,
+            "documentation": "Active Power Total",
+            "historyEnabled": true,
+            "name": "ActivePowerTotal",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "sqrt({[.]ApparentPowerA}^2-{[.]ActivePowerA}^2)",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Reactive Power A",
+            "name": "ReactivePowerA",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVAR",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "sqrt({[.]ApparentPowerB}^2-{[.]ActivePowerB}^2)",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Reactive Power B",
+            "name": "ReactivePowerB",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVAR",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]ApparentPowerB} * {[.]../PF/PowerFactorB}",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Active Power B",
+            "name": "ActivePowerB",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "sqrt({[.]ApparentPowerC}^2-{[.]ActivePowerC}^2)",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Reactive Power C",
+            "name": "ReactivePowerC",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVAR",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Voltage/VoltageLLMean}*{[.]../Current/CurrentC}*sqrt(3)/1000000",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Apparent Power C",
+            "name": "ApparentPowerC",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "sum({[.]ApparentPowerA},{[.]ApparentPowerB},{[.]ApparentPowerC})",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 12.0,
+            "documentation": "Apparent Power Total",
+            "historyEnabled": true,
+            "name": "ApparentPowerTotal",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Voltage/VoltageLLMean}*{[.]../Current/CurrentB}*sqrt(3)/1000000",
+            "dataType": "Float8",
+            "engHigh": 4.0,
+            "documentation": "Apparent Power B",
+            "name": "ApparentPowerB",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "sum({[.]ReactivePowerA},{[.]ReactivePowerB},{[.]ReactivePowerC})",
+            "dataType": "Float8",
+            "engHigh": 12.0,
+            "documentation": "Reactive Power Total",
+            "name": "ReactivePowerTotal",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVAR",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../current/CurrentA/Alarms.ActiveAckCount}+{[.]../current/CurrentA/Alarms.ActiveUnackCount}+{[.]../current/CurrentB/Alarms.ActiveAckCount}+{[.]../current/CurrentB/Alarms.ActiveUnackCount}+{[.]../current/CurrentC/Alarms.ActiveAckCount}+{[.]../current/CurrentC/Alarms.ActiveUnackCount}+{[.]../voltage/VoltageAB/Alarms.ActiveAckCount}+{[.]../voltage/VoltageAB/Alarms.ActiveUnackCount}+{[.]../voltage/VoltageBC/Alarms.ActiveAckCount}+{[.]../voltage/VoltageBC/Alarms.ActiveUnackCount}+{[.]../voltage/VoltageCA/Alarms.ActiveAckCount}+{[.]../voltage/VoltageCA/Alarms.ActiveUnackCount}+{[.]../voltage/VoltageLLMean/Alarms.ActiveAckCount}+{[.]../voltage/VoltageLLMean/Alarms.ActiveUnackCount}+{[.]../freq/Frequency/Alarms.ActiveAckCount}+{[.]../freq/Frequency/Alarms.ActiveUnackCount}+{[.]../pq/ThdCurrentA/Alarms.ActiveAckCount}+{[.]../pq/ThdCurrentA/Alarms.ActiveUnackCount}+{[.]../pq/ThdCurrentB/Alarms.ActiveAckCount}+{[.]../pq/ThdCurrentB/Alarms.ActiveUnackCount}+{[.]../pq/ThdCurrentC/Alarms.ActiveAckCount}+{[.]../pq/ThdCurrentC/Alarms.ActiveUnackCount}+{[.]../pq/ThdVoltageAN/Alarms.ActiveAckCount}+{[.]../pq/ThdVoltageAN/Alarms.ActiveUnackCount}+{[.]../pq/ThdVoltageBN/Alarms.ActiveAckCount}+{[.]../pq/ThdVoltageBN/Alarms.ActiveUnackCount}+{[.]../pq/ThdVoltageCN/Alarms.ActiveAckCount}+{[.]../pq/ThdVoltageCN/Alarms.ActiveUnackCount}+{[.]../current/WorstCurrentUnbalance/Alarms.ActiveAckCount}+{[.]../current/WorstCurrentUnbalance/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Voltage",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]VoltageAN},{[.]VoltageBN},{[.]VoltageCN})",
+            "dataType": "Float8",
+            "engHigh": 285.0,
+            "documentation": "Voltage L-N Mean",
+            "name": "VoltageLNMean",
+            "value": 0.0,
+            "engLow": 270.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 285.0,
+            "documentation": "Voltage C-N",
+            "name": "VoltageCN",
+            "pdsFunction": "cosine(276,278,100~,true)",
+            "value": 0.0,
+            "engLow": 270.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 485.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageCA.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageCA.EngHigh}+ \u0027 \u0027 + {[.]VoltageCA.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageCA.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]VoltageCA.EngLow}+ \u0027 \u0027 + {[.]VoltageCA.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage C-A",
+            "name": "VoltageCA",
+            "pdsFunction": "cosine(478,481,100~,true)",
+            "value": 0.0,
+            "engLow": 475.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 485.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageBC.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageBC.EngHigh}+ \u0027 \u0027 + {[.]VoltageBC.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageBC.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]VoltageBC.EngLow}+ \u0027 \u0027 + {[.]VoltageBC.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage B-C",
+            "name": "VoltageBC",
+            "pdsFunction": "cosine(478,481,100~,true)",
+            "value": 0.0,
+            "engLow": 475.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 485.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageAB.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageAB.EngHigh}+ \u0027 \u0027 + {[.]VoltageAB.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageAB.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]VoltageAB.EngLow}+ \u0027 \u0027 + {[.]VoltageAB.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage A-B",
+            "name": "VoltageAB",
+            "pdsFunction": "cosine(478,481,100~,true)",
+            "value": 0.0,
+            "engLow": 475.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 285.0,
+            "documentation": "Voltage B-N",
+            "name": "VoltageBN",
+            "pdsFunction": "cosine(276,278,100~,true)",
+            "value": 0.0,
+            "engLow": 270.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 285.0,
+            "documentation": "Voltage A-N",
+            "name": "VoltageAN",
+            "pdsFunction": "cosine(276,278,100~,true)",
+            "value": 0.0,
+            "engLow": 270.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]VoltageAB},{[.]VoltageBC},{[.]VoltageCA})",
+            "engHigh": 485.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageLLMean.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageLLMean.EngHigh}+ \u0027 \u0027 + {[.]VoltageLLMean.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageLLMean.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]VoltageLLMean.EngLow}+ \u0027 \u0027 + {[.]VoltageLLMean.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage L-L Mean",
+            "engLow": 475.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "VoltageLLMean",
+            "value": 0.0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AHU",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Cooling",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Evaporative Cooling Active",
+            "name": "IsEvaporativeCoolingActive",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Cooling Water Level High",
+            "name": "IsCoolingWaterLevelHigh",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Cooling Water Level Low",
+            "name": "IsCoolingWaterLevelLow",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Cooling Pump On",
+            "name": "IsCoolingPumpOn",
+            "value": true,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Unit in Economizer Mode",
+            "name": "IsUnitInEconomizerMode",
+            "value": true,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Dampers",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Return Air Damper Feedback",
+            "name": "ReturnAirDamperFeedback",
+            "value": 15.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Bypass Damper Feedback",
+            "name": "BypassDamperFeedback",
+            "value": 100.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Outside Air Damper Feedback",
+            "name": "OutsideAirDamperFeedback",
+            "value": 85.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Return Air Damper Position",
+            "name": "ReturnAirDamperPosition",
+            "value": 15.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Outside Air Damper Position",
+            "name": "OutsideAirDamperPosition",
+            "value": 85.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Bypass Damper Position",
+            "name": "BypassDamperPosition",
+            "value": 100.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Fan",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 100.0,
+            "documentation": "Fan Speed Feedback",
+            "name": "FanSpeedFeedback",
+            "pdsFunction": "cosine(70,100,100~,true)",
+            "value": 0.0,
+            "engLow": 70.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 100.0,
+            "documentation": "Fan Speed Command",
+            "name": "FanSpeedCommand",
+            "pdsFunction": "square(70,100,100~,true)",
+            "value": 77.0,
+            "engLow": 70.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Fan Alarm Active",
+            "name": "IsFanAlarmActive",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 225.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]SupplyAirStaticPressure.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]SupplyAirStaticPressure.EngHigh}+ \u0027 \u0027 + {[.]SupplyAirStaticPressure.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]SupplyAirStaticPressure.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]SupplyAirStaticPressure.EngLow}+ \u0027 \u0027 + {[.]SupplyAirStaticPressure.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Supply Air Static Pressure",
+            "name": "SupplyAirStaticPressure",
+            "pdsFunction": "cosine(210,225,100~,true)",
+            "value": 217.0,
+            "engLow": 210.0,
+            "engUnit": "Pa",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Setpoints",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Supply Air Temperature",
+            "name": "SupplyAirTemperature",
+            "value": 20.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Leak Detected",
+            "name": "IsLeakDetected",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Start Command",
+            "name": "StartCommand",
+            "value": true,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Status/IsAhuRunning/Alarms.ActiveAckCount}+{[.]../Status/IsAhuRunning/Alarms.ActiveUnackCount}+{[.]../Temperature/SupplyAirTemperature/Alarms.ActiveAckCount}+{[.]../Temperature/SupplyAirTemperature/Alarms.ActiveUnackCount}+{[.]../Temperature/ReturnAirTemperature/Alarms.ActiveAckCount}+{[.]../Temperature/ReturnAirTemperature/Alarms.ActiveUnackCount}+{[.]../Fan/SupplyAirStaticPressure/Alarms.ActiveAckCount}+{[.]../Fan/SupplyAirStaticPressure/Alarms.ActiveUnackCount}+{[.]../Temperature/OutsideAirTemperature/Alarms.ActiveAckCount}+{[.]../Temperature/OutsideAirTemperature/Alarms.ActiveUnackCount}+{[.]../Temperature/OutsideAirDewPoint/Alarms.ActiveAckCount}+{[.]../Temperature/OutsideAirDewPoint/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsAhuRunning.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsAhuRunning.EngLow}+ \u0027 \u0027 + {[.]IsAhuRunning.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is AHU Running",
+            "name": "IsAhuRunning",
+            "pdsFunction": "1",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Air Filter Differential Pressure",
+            "name": "AirFilterDifferentialPressure",
+            "value": 0.5,
+            "engUnit": "Pa",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "Is Drain Cycle Active",
+            "name": "IsDrainCycleActive",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Temperature",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 13.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]OutsideAirDewPoint.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]OutsideAirDewPoint.EngHigh}+ \u0027 \u0027 + {[.]OutsideAirDewPoint.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]OutsideAirDewPoint.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]OutsideAirDewPoint.EngLow}+ \u0027 \u0027 + {[.]OutsideAirDewPoint.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Outside Air Dew Point",
+            "name": "OutsideAirDewPoint",
+            "value": 12.5,
+            "engLow": 12.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 24.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]SupplyAirTemperature.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]SupplyAirTemperature.EngHigh}+ \u0027 \u0027 + {[.]SupplyAirTemperature.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]SupplyAirTemperature.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]SupplyAirTemperature.EngLow}+ \u0027 \u0027 + {[.]SupplyAirTemperature.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Supply Air Temperature",
+            "name": "SupplyAirTemperature",
+            "pdsFunction": "sine(21,22,100~,true)",
+            "value": 20.0,
+            "engLow": 18.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Data Hall Wet Bulb Temp",
+            "name": "DataHallWetBulbTemp",
+            "value": 19.0,
+            "engUnit": "%RH",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 16.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]OutsideAirTemperature.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]OutsideAirTemperature.EngHigh}+ \u0027 \u0027 + {[.]OutsideAirTemperature.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]OutsideAirTemperature.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]OutsideAirTemperature.EngLow}+ \u0027 \u0027 + {[.]OutsideAirTemperature.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Outside Air Temperature",
+            "name": "OutsideAirTemperature",
+            "value": 15.0,
+            "engLow": 14.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 16.0,
+            "documentation": "Mixed Air Temperature",
+            "name": "MixedAirTemperature",
+            "pdsFunction": "cosine(14,16,100~,true)",
+            "value": 0.0,
+            "engLow": 14.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 35.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ReturnAirTemperature.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ReturnAirTemperature.EngHigh}+ \u0027 \u0027 + {[.]ReturnAirTemperature.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ReturnAirTemperature.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]ReturnAirTemperature.EngLow}+ \u0027 \u0027 + {[.]ReturnAirTemperature.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Return Air Temperature",
+            "name": "ReturnAirTemperature",
+            "pdsFunction": "sine(30,34,200~,true)",
+            "value": 0.0,
+            "engLow": 27.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "GEN",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Battery",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Battery Voltage",
+            "name": "BatteryVoltage",
+            "value": 12.5,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Engine",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Engine Coolant Temperature",
+            "name": "EngineCoolantTemperature",
+            "value": 25.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Exhaust Temperature",
+            "name": "ExhaustTemperature",
+            "value": 27.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Engine Speed",
+            "name": "EngineSpeed",
+            "value": 0,
+            "engUnit": "RPM",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Engine Oil Pressure",
+            "name": "EngineOilPressure",
+            "value": 0.0,
+            "engUnit": "kPa",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Engine Operating Hours",
+            "name": "EngineOperatingHours",
+            "value": 175.0,
+            "engUnit": "Hrs",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Intake Manifold Temperature",
+            "name": "IntakeManifoldTemperature",
+            "value": 26.0,
+            "engUnit": "°C",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Engine Coolant Level",
+            "name": "EngineCoolantLevel",
+            "value": 95,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Fuel",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Total Fuel Consumption",
+            "name": "TotalFuelConsumption",
+            "value": 2.5,
+            "engUnit": "kGal",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Fuel Level",
+            "name": "FuelLevel",
+            "value": 98,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Metering",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 490.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageAB.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageAB.EngHigh}+ \u0027 \u0027 + {[.]VoltageAB.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage A-B",
+            "name": "VoltageAB",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Voltage L-N Avg",
+            "name": "AvgVoltageLN",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 200.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentB.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentB.EngHigh}+ \u0027 \u0027 + {[.]CurrentB.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current B",
+            "name": "CurrentB",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 490.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageBC.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageBC.EngHigh}+ \u0027 \u0027 + {[.]VoltageBC.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage B-C",
+            "name": "VoltageBC",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 200.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentA.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentA.EngHigh}+ \u0027 \u0027 + {[.]CurrentA.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current A",
+            "name": "CurrentA",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 490.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]VoltageCA.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]VoltageCA.EngHigh}+ \u0027 \u0027 + {[.]VoltageCA.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage C-A",
+            "name": "VoltageCA",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 490.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]AvgVoltageLL.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]AvgVoltageLL.EngHigh}+ \u0027 \u0027 + {[.]AvgVoltageLL.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Voltage L-L Avg",
+            "historyEnabled": true,
+            "name": "AvgVoltageLL",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Voltage B-N",
+            "name": "VoltageBN",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 200.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentC.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentC.EngHigh}+ \u0027 \u0027 + {[.]CurrentC.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current C",
+            "name": "CurrentC",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Voltage C-N",
+            "name": "VoltageCN",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Voltage A-N",
+            "name": "VoltageAN",
+            "value": 0.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "documentation": "Current Avg",
+            "historyEnabled": true,
+            "name": "AvgCurrent",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 61.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]Frequency.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]Frequency.EngHigh}+ \u0027 \u0027 + {[.]Frequency.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]Frequency.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]Frequency.EngLow}+ \u0027 \u0027 + {[.]Frequency.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Frequency",
+            "name": "Frequency",
+            "value": 60.0,
+            "engLow": 59.0,
+            "engUnit": "Hz",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Power",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Apparant Power Total",
+            "name": "ApparantPowerTotal",
+            "value": 0.0,
+            "engUnit": "kVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Real Power Total",
+            "name": "RealPowerTotal",
+            "value": 0.0,
+            "engUnit": "kW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Overall Power Factor",
+            "name": "OverallPowerFactor",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Reactive Power Total",
+            "name": "ReactivePowerTotal",
+            "value": 0.0,
+            "engUnit": "kVAR",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "engHigh": 0.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]ControlSwtichStatus.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]ControlSwtichStatus.EngHigh}+ \u0027 \u0027 + {[.]ControlSwtichStatus.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Control Swtich Status",
+            "name": "ControlSwtichStatus",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Starts",
+            "name": "Starts",
+            "value": 240,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "switch({[.]ControlSwtichStatus},0,1,2,3,\u0027Off\u0027,\u0027Automatic\u0027,\u0027In Test\u0027,\u0027Override\u0027,\u0027Not Assigned\u0027)",
+            "dataType": "String",
+            "documentation": "Control Switch Status String",
+            "name": "ControlSwitchStatusString",
+            "value": "",
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "String",
+            "documentation": "State",
+            "name": "State",
+            "value": "Standby",
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "documentation": "IsSummaryAlarmActive",
+            "name": "IsSummaryAlarmActive",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Status/State}",
+            "dataType": "String",
+            "documentation": "Status",
+            "name": "Status",
+            "value": "",
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../metering/CurrentA/Alarms.ActiveAckCount}+{[.]../metering/CurrentA/Alarms.ActiveUnackCount}+{[.]../metering/CurrentB/Alarms.ActiveAckCount}+{[.]../metering/CurrentB/Alarms.ActiveUnackCount}+{[.]../metering/CurrentC/Alarms.ActiveAckCount}+{[.]../metering/CurrentC/Alarms.ActiveUnackCount}+{[.]../metering/VoltageAB/Alarms.ActiveAckCount}+{[.]../metering/VoltageAB/Alarms.ActiveUnackCount}+{[.]../metering/VoltageBC/Alarms.ActiveAckCount}+{[.]../metering/VoltageBC/Alarms.ActiveUnackCount}+{[.]../metering/VoltageCA/Alarms.ActiveAckCount}+{[.]../metering/VoltageCA/Alarms.ActiveUnackCount}+{[.]../metering/AvgVoltageLL/Alarms.ActiveAckCount}+{[.]../metering/AvgVoltageLL/Alarms.ActiveUnackCount}+{[.]../status/ControlSwtichStatus/Alarms.ActiveAckCount}+{[.]../status/ControlSwtichStatus/Alarms.ActiveUnackCount}+{[.]../metering/Frequency/Alarms.ActiveAckCount}+{[.]../metering/Frequency/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "XFR",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../XFR/IsOilTemperatureHigh/Alarms.ActiveAckCount}+{[.]../XFR/IsOilTemperatureHigh/Alarms.ActiveUnackCount}+{[.]../XFR/IsOilLevelLow/Alarms.ActiveAckCount}+{[.]../XFR/IsOilLevelLow/Alarms.ActiveUnackCount}+{[.]../XFR/IsControlPowerOn/Alarms.ActiveAckCount}+{[.]../XFR/IsControlPowerOn/Alarms.ActiveUnackCount}+{[.]../XFR/IsWindingTemperatureAlarm/Alarms.ActiveAckCount}+{[.]../XFR/IsWindingTemperatureAlarm/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Xfr",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsOilTemperatureHigh.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsOilTemperatureHigh.EngHigh}+ \u0027 \u0027 + {[.]IsOilTemperatureHigh.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Oil Temperature High",
+            "name": "IsOilTemperatureHigh",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsWindingTemperatureAlarm.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsWindingTemperatureAlarm.EngHigh}+ \u0027 \u0027 + {[.]IsWindingTemperatureAlarm.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Winding Temperature Alarm",
+            "name": "IsWindingTemperatureAlarm",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsControlPowerOn.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsControlPowerOn.EngLow}+ \u0027 \u0027 + {[.]IsControlPowerOn.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Control Power On",
+            "name": "IsControlPowerOn",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsOilLevelLow.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsOilLevelLow.EngHigh}+ \u0027 \u0027 + {[.]IsOilLevelLow.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Oil Level Low",
+            "name": "IsOilLevelLow",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "UPS",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Battery",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Input/SystemInputVoltageAB}\u003c{[.]../Input/SystemInputVoltageAB.EngLow}",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBatteryDischarging.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsBatteryDischarging.EngHigh}+ \u0027 \u0027 + {[.]IsBatteryDischarging.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Battery Discharging",
+            "name": "IsBatteryDischarging",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 99.0,
+            "documentation": "Battery Capacity Remaining",
+            "name": "BatteryCapacityRemaining",
+            "pdsFunction": "ramp(95,99,100~,true)",
+            "value": 0.0,
+            "engLow": 95.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBatteryTempHigh.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsBatteryTempHigh.EngHigh}+ \u0027 \u0027 + {[.]IsBatteryTempHigh.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Battery Temp High",
+            "name": "IsBatteryTempHigh",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Battery Discharge Cycles",
+            "name": "BatteryDischargeCycles",
+            "value": 100.0,
+            "engUnit": "Cycles",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBatteryTestInProgress.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsBatteryTestInProgress.EngHigh}+ \u0027 \u0027 + {[.]IsBatteryTestInProgress.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Battery Test in Progress",
+            "name": "IsBatteryTestInProgress",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "if({[.]IsBatteryDischarging},secondsBetween({[.]IsBatteryDischarging.Timestamp},now()),0)",
+            "dataType": "Float8",
+            "documentation": "Elapsed Time Discharging Battery",
+            "name": "ElapsedTimeDischargingBattery",
+            "value": 0.0,
+            "engUnit": "sec",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]BatteryCapacityRemaining}\u003c30",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBatteryLow.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsBatteryLow.EngHigh}+ \u0027 \u0027 + {[.]IsBatteryLow.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Battery Low",
+            "name": "IsBatteryLow",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBatteryTestFailed.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsBatteryTestFailed.EngHigh}+ \u0027 \u0027 + {[.]IsBatteryTestFailed.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Battery Test Failed",
+            "name": "IsBatteryTestFailed",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "!{[.]IsBatteryDischarging}",
+            "dataType": "Boolean",
+            "documentation": "Is Battery Charging",
+            "name": "IsBatteryCharging",
+            "value": true,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Energy",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "System Input Cumulative Energy per Period",
+            "name": "SystemInputRealEnergyMonthly",
+            "value": 1200.0,
+            "engUnit": "GWh",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Systeim Output Cumulative Energy per Period",
+            "name": "SystemOutputRealEnergyMonthly",
+            "value": 997.0,
+            "engUnit": "GWh",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Input",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]SystemInputVoltageMean}*{[.]SystemInputCurrentMean}*{[.]SystemInputPowerFactor}*sqrt(3)/1000",
+            "dataType": "Float8",
+            "engHigh": 1700.0,
+            "documentation": "System Input Real Power",
+            "name": "SystemInputRealPower",
+            "value": 0.0,
+            "engLow": 400.0,
+            "engUnit": "kW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 490.0,
+            "documentation": "System Input Voltage C-A",
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemInputVoltageCA",
+            "pdsFunction": "random(470,490,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 2000.0,
+            "documentation": "System Input Current B",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemInputCurrentB",
+            "pdsFunction": "random(1600,1900,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 2000.0,
+            "documentation": "System Input Current A",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemInputCurrentA",
+            "pdsFunction": "random(1600,1900,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 0.98,
+            "documentation": "System Input Power Factor",
+            "name": "SystemInputPowerFactor",
+            "pdsFunction": "random(0.95,0.98,true)",
+            "value": 0.0,
+            "engLow": 0.95,
+            "engUnit": "",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 490.0,
+            "documentation": "System Input Voltage A-B",
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemInputVoltageAB",
+            "pdsFunction": "random(470,490,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 2000.0,
+            "documentation": "System Input Current C",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemInputCurrentC",
+            "pdsFunction": "random(1600,1900,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]SystemInputVoltageAB},{[.]SystemInputVoltageBC},{[.]SystemInputVoltageCA})",
+            "dataType": "Float8",
+            "engHigh": 490.0,
+            "documentation": "System Input Voltage Mean",
+            "name": "SystemInputVoltageMean",
+            "value": 0.0,
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]SystemInputCurrentA},{[.]SystemInputCurrentB},{[.]SystemInputCurrentC})",
+            "dataType": "Float8",
+            "engHigh": 2000.0,
+            "documentation": "System Input Current Mean",
+            "name": "SystemInputCurrentMean",
+            "value": 0.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 61.0,
+            "documentation": "System Input Frequency",
+            "name": "SystemInputFrequency",
+            "value": 60.0,
+            "engLow": 59.0,
+            "engUnit": "Hz",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 490.0,
+            "documentation": "System Input Voltage B-C",
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemInputVoltageBC",
+            "pdsFunction": "random(470,490,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          }
+        ]
+      },
+      {
+        "name": "Output",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 2000.0,
+            "documentation": "System Output Current A",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemOutputCurrentA",
+            "pdsFunction": "random(1500,1800,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 2000.0,
+            "documentation": "System Output Current C",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemOutputCurrentC",
+            "pdsFunction": "random(1500,1800,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]SystemOutputVoltageMean}*{[.]SystemOutputCurrentMean}*sqrt(3)/1000",
+            "dataType": "Float8",
+            "engHigh": 1700.0,
+            "documentation": "System Output Apparent Power",
+            "name": "SystemOutputApparentPower",
+            "value": 0.0,
+            "engLow": 400.0,
+            "engUnit": "kVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]SystemOutputCurrentA},{[.]SystemOutputCurrentB},{[.]SystemOutputCurrentC})",
+            "dataType": "Float8",
+            "engHigh": 2000.0,
+            "documentation": "System Output Current Mean",
+            "name": "SystemOutputCurrentMean",
+            "value": 0.0,
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 490.0,
+            "documentation": "System Output Voltage C-A",
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemOutputVoltageCA",
+            "pdsFunction": "random(480.0,480.5,true)",
+            "value": 480.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 61.0,
+            "documentation": "System Output Frequency",
+            "name": "SystemOutputFrequency",
+            "value": 60.0,
+            "engLow": 59.0,
+            "engUnit": "Hz",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 490.0,
+            "documentation": "System Output Voltage B-C",
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemOutputVoltageBC",
+            "pdsFunction": "random(480.0,480.5,true)",
+            "value": 480.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 490.0,
+            "documentation": "System Output Voltage A-B",
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemOutputVoltageAB",
+            "pdsFunction": "random(480.0,480.5,true)",
+            "value": 480.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]SystemOutputApparentPower}*{[.]SystemOutputPowerFactor}",
+            "dataType": "Float8",
+            "engHigh": 1700.0,
+            "documentation": "System Output Real Power",
+            "name": "SystemOutputRealPower",
+            "value": 0.0,
+            "engLow": 400.0,
+            "engUnit": "kW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "engHigh": 2000.0,
+            "documentation": "System Output Current B",
+            "engLow": 500.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "historyEnabled": true,
+            "name": "SystemOutputCurrentB",
+            "pdsFunction": "random(1500,1800,true)",
+            "value": 0.0,
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]SystemOutputApparentPower}*sqrt(1-{[.]SystemOutputPowerFactor}^2)",
+            "dataType": "Float8",
+            "engHigh": 550.0,
+            "documentation": "System Output Reactive Power",
+            "name": "SystemOutputReactivePower",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "kVAR",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]SystemOutputVoltageAB},{[.]SystemOutputVoltageBC},{[.]SystemOutputVoltageCA})",
+            "dataType": "Float8",
+            "engHigh": 490.0,
+            "documentation": "System Output Voltage Mean",
+            "name": "SystemOutputVoltageMean",
+            "value": 0.0,
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 1.0,
+            "documentation": "System Output Power Factor",
+            "name": "SystemOutputPowerFactor",
+            "value": 0.99,
+            "engLow": 0.95,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "engHigh": 1.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]SystemStatus.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]SystemStatus.EngHigh}+ \u0027 \u0027 + {[.]SystemStatus.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]SystemStatus.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]SystemStatus.EngLow}+ \u0027 \u0027 + {[.]SystemStatus.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "System Status",
+            "name": "SystemStatus",
+            "value": 1,
+            "engLow": 1.0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../battery/IsBatteryDischarging/Alarms.ActiveAckCount}+{[.]../battery/IsBatteryDischarging/Alarms.ActiveUnackCount}+{[.]../battery/IsBatteryLow/Alarms.ActiveAckCount}+{[.]../battery/IsBatteryLow/Alarms.ActiveUnackCount}+{[.]../battery/IsBatteryTempHigh/Alarms.ActiveAckCount}+{[.]../battery/IsBatteryTempHigh/Alarms.ActiveUnackCount}+{[.]../battery/IsBatteryTestInProgress/Alarms.ActiveAckCount}+{[.]../battery/IsBatteryTestInProgress/Alarms.ActiveUnackCount}+{[.]../battery/IsBatteryTestFailed/Alarms.ActiveAckCount}+{[.]../battery/IsBatteryTestFailed/Alarms.ActiveUnackCount}+{[.]../status/IsOutputOverloaded/Alarms.ActiveAckCount}+{[.]../status/IsOutputOverloaded/Alarms.ActiveUnackCount}+{[.]../status/IsInverterActive/Alarms.ActiveAckCount}+{[.]../status/IsInverterActive/Alarms.ActiveUnackCount}+{[.]../status/SystemStatus/Alarms.ActiveAckCount}+{[.]../status/SystemStatus/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsInverterActive.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsInverterActive.EngLow}+ \u0027 \u0027 + {[.]IsInverterActive.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Inverter Active",
+            "name": "IsInverterActive",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsOutputOverloaded.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsOutputOverloaded.EngHigh}+ \u0027 \u0027 + {[.]IsOutputOverloaded.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Output Overloaded",
+            "name": "IsOutputOverloaded",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "switch({[.]SystemStatus},0,1,2,3,\u0027Off\u0027,\u0027Automatic\u0027,\u0027In Test\u0027,\u0027Override\u0027,\u0027Not Assigned\u0027)",
+            "dataType": "String",
+            "documentation": "System Status String",
+            "name": "ControlSwitchStatusString",
+            "value": "",
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Breaker",
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "Energy",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 2600.0,
+            "documentation": "Real Energy Total",
+            "name": "RealEnergyTotal",
+            "value": 2400.0,
+            "engLow": 2000.0,
+            "engUnit": "MWh",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]RealEnergyTotal}/{[.]../Metering/PowerFactorTotal}",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 2600.0,
+            "documentation": "Apparent Energy Total",
+            "historyEnabled": true,
+            "name": "ApparentEnergyTotal",
+            "value": 0.0,
+            "engLow": 2000.0,
+            "engUnit": "MVAh",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]ApparentEnergyTotal}-{[.]RealEnergyTotal}",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 200.0,
+            "documentation": "Reactive Energy Total",
+            "historyEnabled": true,
+            "name": "ReactiveEnergyTotal",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "MVARh",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Info",
+        "typeId": "Exchange/DataCenterDemo/Info",
+        "tagType": "UdtInstance"
+      },
+      {
+        "name": "Metering",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 61.0,
+            "documentation": "Frequency",
+            "name": "Frequency",
+            "value": 60.0,
+            "engLow": 59.0,
+            "engUnit": "Hz",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Current G",
+            "name": "CurrentG",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current A",
+            "name": "CurrentA",
+            "pdsFunction": "random(4300,5800,true)",
+            "value": 4500.0,
+            "engLow": 1000.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "documentation": "Current N",
+            "name": "CurrentN",
+            "value": 0.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 490.0,
+            "documentation": "Voltage L-L Average",
+            "name": "VoltageMeanLL",
+            "pdsFunction": "random(470,490,true)",
+            "value": 0.0,
+            "engLow": 470.0,
+            "engUnit": "V",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current C",
+            "name": "CurrentC",
+            "pdsFunction": "random(4300,5800,true)",
+            "value": 4500.0,
+            "engLow": 1000.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 1.0,
+            "documentation": "Power Factor Total",
+            "name": "PowerFactorTotal",
+            "value": 0.95,
+            "engLow": 0.9,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Float8",
+            "engHigh": 5.0,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentUnbalance.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]CurrentUnbalance.EngHigh}+ \u0027 \u0027 + {[.]CurrentUnbalance.EngUnit}"
+                }
+              },
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]CurrentUnbalance.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]CurrentUnbalance.EngLow}+ \u0027 \u0027 + {[.]CurrentUnbalance.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Current Unbalance",
+            "name": "CurrentUnbalance",
+            "value": 3.0,
+            "engLow": 0.0,
+            "engUnit": "%",
+            "tagType": "AtomicTag"
+          },
+          {
+            "opcItemPath": {
+              "bindType": "parameter",
+              "binding": "ns\u003d1;s\u003d[DataCenterDemoOpc]{PathToTag}"
+            },
+            "valueSource": "opc",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current B",
+            "name": "CurrentB",
+            "pdsFunction": "random(4300,5800,true)",
+            "value": 4500.0,
+            "engLow": 1000.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag",
+            "opcServer": "Ignition OPC UA Server"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "mean({[.]CurrentA},{[.]CurrentB},{[.]CurrentC})",
+            "dataType": "Float8",
+            "engHigh": 6000.0,
+            "documentation": "Current Mean",
+            "name": "CurrentMean",
+            "value": 0.0,
+            "engLow": 1000.0,
+            "engUnit": "A",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Power",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "expr",
+            "expression": "{[.]RealPowerTotal}/{[.]../Metering/PowerFactorTotal}",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 3200.0,
+            "documentation": "Apparent Power Total",
+            "historyEnabled": true,
+            "name": "ApparentPowerTotal",
+            "value": 0.0,
+            "engLow": 2000.0,
+            "engUnit": "kVA",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../Metering/VoltageMeanLL}*{[.]../Metering/CurrentMean}/1000",
+            "dataType": "Float8",
+            "engHigh": 2900.0,
+            "documentation": "Real Power Total",
+            "name": "RealPowerTotal",
+            "value": 0.0,
+            "engLow": 2000.0,
+            "engUnit": "kW",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]ApparentPowerTotal}-{[.]RealPowerTotal}",
+            "dataType": "Float8",
+            "historyProvider": "DataCenter",
+            "engHigh": 200.0,
+            "documentation": "Reactive Power Total",
+            "historyEnabled": true,
+            "name": "ReactivePowerTotal",
+            "value": 0.0,
+            "engLow": 0.0,
+            "engUnit": "kVAR",
+            "tagType": "AtomicTag"
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "tagType": "Folder",
+        "tags": [
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsMaintenanceModeActive.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsMaintenanceModeActive.EngHigh}+ \u0027 \u0027 + {[.]IsMaintenanceModeActive.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Maintenance Mode Active",
+            "name": "IsMaintenanceModeActive",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "engHigh": 0.5,
+            "alarms": [
+              {
+                "mode": "AboveValue",
+                "name": "AlarmAbove",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBreakerTripped.EngHigh}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Above \u0027 + {[.]IsBreakerTripped.EngHigh}+ \u0027 \u0027 + {[.]IsBreakerTripped.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Breaker Tripped",
+            "name": "IsBreakerTripped",
+            "value": false,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "expr",
+            "expression": "{[.]../metering/CurrentUnbalance/Alarms.ActiveAckCount}+{[.]../metering/CurrentUnbalance/Alarms.ActiveUnackCount}+{[.]../status/IsBreakerClosed/Alarms.ActiveAckCount}+{[.]../status/IsBreakerClosed/Alarms.ActiveUnackCount}+{[.]../status/IsBreakerTripped/Alarms.ActiveAckCount}+{[.]../status/IsBreakerTripped/Alarms.ActiveUnackCount}+{[.]../status/IsMaintenanceModeActive/Alarms.ActiveAckCount}+{[.]../status/IsMaintenanceModeActive/Alarms.ActiveUnackCount}",
+            "dataType": "Int8",
+            "engHigh": 0.5,
+            "documentation": "Active Alarm Count",
+            "name": "ActiveAlarmCount",
+            "value": 0,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Boolean",
+            "alarms": [
+              {
+                "mode": "BelowValue",
+                "name": "AlarmBelow",
+                "inclusiveA": false,
+                "priority": "High",
+                "ackMode": "Auto",
+                "setpointA": {
+                  "bindType": "Expression",
+                  "value": "{[.]IsBreakerClosed.EngLow}"
+                },
+                "label": {
+                  "bindType": "Expression",
+                  "value": "\u0027Below \u0027 + {[.]IsBreakerClosed.EngLow}+ \u0027 \u0027 + {[.]IsBreakerClosed.EngUnit}"
+                }
+              }
+            ],
+            "documentation": "Is Breaker Closed",
+            "name": "IsBreakerClosed",
+            "value": true,
+            "engLow": 0.5,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          },
+          {
+            "valueSource": "memory",
+            "dataType": "Int8",
+            "documentation": "Open to Closed Count",
+            "name": "OpenToClosedCount",
+            "value": 35,
+            "engUnit": "",
+            "tagType": "AtomicTag"
+          }
+        ]
+      }
+    ]
+  }
+]

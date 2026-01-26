@@ -1,0 +1,10 @@
+[
+  {
+    "valueSource": "memory",
+    "readOnly": true,
+    "dataType": "String",
+    "name": "Version",
+    "defaultValue": "x.x.x",
+    "tagType": "AtomicTag"
+  }
+]

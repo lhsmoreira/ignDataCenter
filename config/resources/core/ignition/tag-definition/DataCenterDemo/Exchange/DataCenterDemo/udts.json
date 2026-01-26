@@ -1,0 +1,17 @@
+[
+  {
+    "name": "SustainabilityComplianceReport",
+    "typeId": "Exchange/DataCenterDemo/SustainabilityComplianceReport",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "AlarmInfo",
+    "typeId": "Exchange/DataCenterDemo/AlarmInfo",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "HeatmapOrchestrator",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/HeatmapOrchestrator",
+    "tagType": "UdtInstance"
+  }
+]
