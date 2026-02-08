@@ -1,0 +1,7 @@
+{
+  "title": "Staging",
+  "description": "Staging/QA deployment mode",
+  "enabled": true,
+  "inheritable": true,
+  "parent": "core"
+}
