@@ -1,0 +1,7 @@
+{
+  "title": "Production",
+  "description": "Production deployment mode",
+  "enabled": true,
+  "inheritable": true,
+  "parent": "core"
+}
