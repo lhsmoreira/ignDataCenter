@@ -1,5 +1,30 @@
 [
   {
+    "name": "Aisle1",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle9",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle3",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle5",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle2",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
+    "tagType": "UdtInstance"
+  },
+  {
     "name": "Aisle12",
     "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
     "tagType": "UdtInstance"
@@ -10,8 +35,28 @@
     "tagType": "UdtInstance"
   },
   {
+    "name": "Aisle7",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle13",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
     "name": "Aisle11",
     "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle10",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
+    "tagType": "UdtInstance"
+  },
+  {
+    "name": "Aisle6",
+    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
     "tagType": "UdtInstance"
   },
   {
@@ -32,13 +77,6 @@
                 "tagType": "Folder",
                 "tags": [
                   {
-                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor3/Temperature})",
-                    "historyProvider": "DataCenter",
-                    "historyEnabled": true,
-                    "name": "Max",
-                    "tagType": "AtomicTag"
-                  },
-                  {
                     "expression": "Min({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor3/Temperature})",
                     "name": "Min",
                     "tagType": "AtomicTag"
@@ -47,6 +85,13 @@
                     "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor3/Temperature})",
                     "enabled": false,
                     "name": "Sum",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle1/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle3/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle5/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle7/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle9/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle11/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle13/Sensor3/Temperature})",
+                    "historyProvider": "DataCenter",
+                    "historyEnabled": true,
+                    "name": "Max",
                     "tagType": "AtomicTag"
                   },
                   {
@@ -69,16 +114,17 @@
                 "tagType": "Folder",
                 "tags": [
                   {
-                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor3/Temperature})",
-                    "enabled": false,
-                    "name": "Sum",
-                    "tagType": "AtomicTag"
-                  },
-                  {
                     "expression": "Max({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor3/Temperature})",
                     "historyProvider": "DataCenter",
                     "historyEnabled": true,
                     "name": "Max",
+                    "tagType": "AtomicTag"
+                  },
+                  {
+                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor3/Temperature})",
+                    "historyProvider": "DataCenter",
+                    "historyEnabled": true,
+                    "name": "Mean",
                     "tagType": "AtomicTag"
                   },
                   {
@@ -87,10 +133,9 @@
                     "tagType": "AtomicTag"
                   },
                   {
-                    "expression": "Mean({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor3/Temperature})",
-                    "historyProvider": "DataCenter",
-                    "historyEnabled": true,
-                    "name": "Mean",
+                    "expression": "Sum({[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle2/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle4/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle6/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle8/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle10/Sensor3/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor1/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor2/Temperature},{[DataCenterDemo]Exchange/DataCenterDemo/Site1/DataHall2/Section4/Heatmap/Aisle12/Sensor3/Temperature})",
+                    "enabled": false,
+                    "name": "Sum",
                     "tagType": "AtomicTag"
                   }
                 ]
@@ -114,53 +159,8 @@
     ]
   },
   {
-    "name": "Aisle13",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle1",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle5",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle6",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
-    "tagType": "UdtInstance"
-  },
-  {
     "name": "Aisle4",
     "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle10",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle3",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle2",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleHot",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle7",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
-    "tagType": "UdtInstance"
-  },
-  {
-    "name": "Aisle9",
-    "typeId": "Exchange/DataCenterDemo/Equipment/Heatmap/AisleCold",
     "tagType": "UdtInstance"
   }
 ]
