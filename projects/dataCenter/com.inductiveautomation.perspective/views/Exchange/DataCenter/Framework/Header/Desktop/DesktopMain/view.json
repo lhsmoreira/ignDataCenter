@@ -158,6 +158,27 @@
         "type": "ia.display.flex-repeater"
       },
       {
+        "meta": {
+          "name": "DeploymentMode"
+        },
+        "position": {
+          "basis": "50px"
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "tagPath": "[System]Gateway/DeploymentMode"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
         "children": [
           {
             "events": {
